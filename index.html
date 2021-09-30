@@ -13,11 +13,109 @@
     <title>Movie Finder</title>
 </head>
 <body>
-    
-    </div>
+    <header>
+        <h1>Move Finder</h1>
+    </header>
+    <main>
 
-    <div
-    
+
+        <section>
+            <form>
+                <input type="text" placeholder="Search for a Movie Genre!" class="movie-search" id="movie-input">
+            </form>
+            <button class="btn">Submit</button>
+
+            <!-- could use and icon for the bookmark btn -->
+            <button id="render-bookmark-btn" >Render Bookmarked Movie List</button>
+            
+        </section>
+
+
+        <!-- lets keep the hardcoded buttons to the left of the search bar -->
+        <!-- When a genre is selected random movie cards dynamically appear, populated with suggested random movies -->
+        <!-- when a genre is selected then another is selected the old cards are populated with the new genre -->
+        <div>
+
+            <h2>Search By Popular Genres</h2>
+
+            <button>Action</button>
+            <button>Comedy</button>
+            <button>Drama</button>
+            <button>Horror</button>
+            <button>Fantasy</button>
+
+        </div>
+
+
+
+        <!-- movie cards will stay hidden until a user selecteds a genre -->
+        <!-- section will have a refresh button to let user see new suggestions -->
+        <section id="suggested-movie-cards">
+
+            <button id="refresh-btn">Refresh Suggestions</button>
+
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+            <div>
+                <p>Title</p>
+                <img href="">
+            </div>
+
+
+        </section>
+
+
+
+        <!-- this dashboard is only for the user selected movie, not for the random movie suggestions -->
+        <!-- could have a bookmark button that saves the movie info to local storage -->
+        <section id="selected-movie-dash">
+
+            <div>
+
+            <div id="selected-movie-title"> Selected Movie</div>
+            <img id="selected-movie-img" href="">
+
+            <div id="selected-movie-rating">Rating</div>
+            <div id="selected-movie-location">Where To Watch</div>
+
+            </div>
+
+            <button>Bookmark</button>
+
+        </section>
+
+
+    </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/Script/script.js"></script>
 </body>
