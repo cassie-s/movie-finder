@@ -1,8 +1,11 @@
 # Movie Finder!
 
-## Link: mollitia animi, id est laborum et dolorum fuga
+## Link: https://cassie-s.github.io/movie-finder/
 
 ## Image:
+
+![Screenshot (22)](https://user-images.githubusercontent.com/88279562/135490068-0270abce-1d62-4447-8bca-909f272f2987.png)
+
 
 ## Description:
 
