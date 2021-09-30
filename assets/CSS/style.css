@@ -1,8 +1,11 @@
 body {
+   
     font-family: 'Nunito Sans', sans-serif; 
     /* background: rgb(210,153,244); */
-    background-image: linear-gradient(90deg, rgba(210,153,244,1) 24%, rgba(252,251,123,1) 100%);
-   }
+    
+     background-image: linear-gradient(90deg, rgba(210,153,244,1) 24%, rgba(252,251,123,1) 100%);
+}
+
 
 
 
