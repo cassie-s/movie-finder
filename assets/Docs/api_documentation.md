@@ -31,7 +31,7 @@ API Request without genre: https://api.themoviedb.org/3/discover/movie?api_key=3
 API request to get where one can watch selected TMDB movie
 
 ## API Request & Key
-`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?source_id=PUT_TMDB_FILM_ID_HERE&source=tmdb&country=us`
+`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?rapidapi-key=bbb550455emsh90631cae1cb42dcp1fb394jsn26315c4b067a&source_id=TMDB_MOVIE_ID_HERE&source=tmdb&country=us`
 
 ## Things to add to page
 No requirements
