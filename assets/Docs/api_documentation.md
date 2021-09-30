@@ -9,8 +9,8 @@ API Request with genre: https://api.themoviedb.org/3/discover/movie?api_key=3e05
 API Request without genre: https://api.themoviedb.org/3/discover/movie?api_key=3e05de6918321bc70bb8260fdbd331f3&include_adult=false  
 
 ## Things to add to page
-- [ ] Images: must use TMBD logo on page to identify use of API   
-- [ ] Notice: must add notice to bottom of page "This product uses the TMDB API but is not endorsed or certified by TMDB"
+- [x] Images: must use TMBD logo on page to identify use of API   
+- [x] Notice: must add notice to bottom of page "This product uses the TMDB API but is not endorsed or certified by TMDB"
 
 ## TMDB Genre IDs
 | Genre       | ID    | Genre    | ID    |
