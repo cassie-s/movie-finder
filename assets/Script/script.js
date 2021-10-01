@@ -5,7 +5,7 @@ var tmdbApiKey="api_key=3e05de6918321bc70bb8260fdbd331f3"
 var utellyApiKey="rapidapi-key=bbb550455emsh90631cae1cb42dcp1fb394jsn26315c4b067a"
 
 //utelly lookup url - needs TMDB movie ID
-var utellyUrlApi = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?" + utellyApiKey +"&source_id=" + tmdbMovieID+ "&source=tmdb&country=us"
+// var utellyUrlApi = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?" + utellyApiKey +"&source_id=" + tmdbMovieID+ "&source=tmdb&country=us"
 
 //function to get random movies
 var getRandomMovie = function () {
@@ -44,4 +44,18 @@ $('#genre-combo').change(function () {
     console.log("Value: "+ genrePickVal);
     console.log("Text: "+ genrePickText);
 });
+
+// local storage //
+let savedMovies = {
+
+}
+
+var bookmarkMovies = function() {
+    localStorage.setItem("movies", JSON.stringify(savedMovies))
+}
+
+var movies = JSON.parse(localStorage.getItem('movies')) || [];
+
+bookmarkMovies();
+
 
