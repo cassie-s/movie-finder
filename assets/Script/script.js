@@ -45,7 +45,12 @@ $('#genre-combo').change(function () {
     console.log("Text: "+ genrePickText);
 });
 
-// local storage //
+// save and display bookmarked movies to local storage
+var displayBookmarks = function() {
+    savedMovies = JSON.parse(localStorage.getItem("movies"));
+    
+}
+
 let savedMovies = {
 
 }
@@ -56,6 +61,16 @@ var bookmarkMovies = function() {
 
 var movies = JSON.parse(localStorage.getItem('movies')) || [];
 
+$("#bookmark-btn").click(function() {
+
 bookmarkMovies();
+    
+});
+
+displayBookmarks();
+
+
+
+
 
 
