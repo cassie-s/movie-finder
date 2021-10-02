@@ -10,10 +10,6 @@ header {
     background-color: #5BDB94;
 }
 
-header h1 {
-    color: #05396B;
-}
-
 body {
    
     font-family: 'Nunito Sans', sans-serif; 
@@ -22,6 +18,13 @@ body {
      background-color: #EDF5E0;
 }
 
+button {
+    background-color: #05396B;
+}
+
+button:hover {
+    background-color: #5BDB94;
+}
 
 
 
