@@ -43,4 +43,4 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 Collin Whalen,
 Inmar Luna,
 Tom Cole,
-Cassie Simpson,
+Cassie Simpson
