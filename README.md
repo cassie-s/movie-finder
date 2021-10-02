@@ -41,8 +41,6 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 ## Contributors 2021:
 
 Collin Whalen,
-John Conor Byung Sullivan,
 Inmar Luna,
 Tom Cole,
 Cassie Simpson,
-Josie Griffin
