@@ -103,6 +103,7 @@ $('#refresh-btn').click(function(){
     getRandomGenre(genreId, genreText, genrePageId);
 })
 
+// to-do: add function for "Get Random Movies" once ui elements in place
 
 $(document).ready(function(){
         if ($('#genre-combo').value == null){
