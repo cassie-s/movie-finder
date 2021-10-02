@@ -4,12 +4,22 @@
     box-sizing: border-box;
 }
 
+header {
+    height: 100%;
+    padding: 20px;
+    background-color: #5BDB94;
+}
+
+header h1 {
+    color: #05396B;
+}
+
 body {
    
     font-family: 'Nunito Sans', sans-serif; 
     /* background: rgb(210,153,244); */
     
-     background-image: linear-gradient(90deg, rgba(210,153,244,1) 24%, rgba(252,251,123,1) 100%);
+     background-color: #EDF5E0;
 }
 
 
