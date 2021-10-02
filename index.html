@@ -13,20 +13,24 @@
     <title>Movie Finder</title>
 </head>
 <body>
-    <header>
-        <h1>Move Finder</h1>
+    <header class="h-40 p-4 m-4 bg-blue-500">
+        <h1 class="text-5xl mt-8 font-bold font-mono text-purple-900 text-center">Movie Finder</h1>
     </header>
     <main>
 
 
-        <section>
+        <section class="inline-block">
             <form>
-                <input type="text" placeholder="Search for a Movie Genre!" class="movie-search" id="movie-input">
+                <input class="py-2 px-6 placeholder-blue-500" type="text" placeholder="Search for a Movie Genre!" class="movie-search" id="movie-input">
             </form>
-            <button class="btn">Submit</button>
+            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Submit
+            </button>
 
             <!-- could use and icon for the bookmark btn -->
-            <button id="render-bookmark-btn" >Render Bookmarked Movie List</button>
+            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" id="render-bookmark-btn">
+                Render Bookmarked Movie List
+            </button>
             
         </section>
 
@@ -34,12 +38,12 @@
         <!-- lets keep the hardcoded buttons to the left of the search bar -->
         <!-- When a genre is selected random movie cards dynamically appear, populated with suggested random movies -->
         <!-- when a genre is selected then another is selected the old cards are populated with the new genre -->
-        <div>
+        <div class="mt-5 inline-block relative">
 
-            <h2>Search By Popular Genres</h2>
-            <label for="genre-combo">Select a Genre</label>
-            <select id="genre-combo">
-                <option disabled selected value="0">Choose a genre</option>
+            <h2 class="text-xl mt-8 font-bold font-mono text-purple-900">Search By Popular Genres</h2>
+            <label for="genre-combo">Select a Genre :</label>
+            <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"  id="genre-combo">
+                <option disabled selected value="0">Choose a genre ...</option>
                 <option value="28">Action</option>
                 <option value="12">Adventure</option>
                 <option value="16">Animation</option>
@@ -66,50 +70,53 @@
 
         <!-- movie cards will stay hidden until a user selecteds a genre -->
         <!-- section will have a refresh button to let user see new suggestions -->
-        <section id="suggested-movie-cards">
 
-            <button id="refresh-btn">Refresh Suggestions</button>
+        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" id="refresh-btn">
+            Refresh Suggestions
+        </button>
 
-            <div>
+        <section class="md:flex flex-wrap gap-y-6" id="suggested-movie-cards">
+
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
-            <div>
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
-            <div>
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
-            <div>
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
-            <div>
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
-            <div>
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
-            <div>
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
-            <div>
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
-            <div>
+            <div class="mx-auto bg-white rounded shadow border p-40 w-64">
                 <p>Title</p>
                 <img href="">
             </div>
 
 
         </section>
-
+        
 
 
         <!-- this dashboard is only for the user selected movie, not for the random movie suggestions -->
@@ -129,12 +136,12 @@
             <button>Bookmark</button>
 
         </section>
-
+        
 
     </main>
-    <footer>
+    <footer class="p-4 md:flex md:items-center md:justify-center " style="border-top:1px solid white">
         <img id="tmdb-logo" src="assets/Images/tmdb_logo.svg" alt="TMDB logo" width="200" height="100"> <!--Remove for css styling later-->
-        <label id="tmdb-label" for="tmdb-logo">This product uses the TMDB API but is not endorsed or certified by TMDB.</label>
+        <label id="tmdb-label" for="tmdb-logo"> This product uses the TMDB API but is not endorsed or certified by TMDB.</label>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/Script/script.js"></script>
