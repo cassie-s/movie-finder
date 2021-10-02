@@ -38,6 +38,9 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
 //start of function for getting combo-box value
 $('#genre-combo').change(function () {
 
+    // show refresh button
+    $('#refresh-btn').show();
+
     // set combobox ID to value of selected option in combobox
     var genreId = this.value;
 
@@ -86,6 +89,30 @@ var getRandomMovies = function () {
         });
     };
 
+$('#refresh-btn').click(function(){
+    // set combobox ID to value of selected option in combobox
+    var genreId = this.value;
+    
+    // set combobox text to value of selected option in combobox
+    var genreText = $( "#genre-combo option:selected" ).text();
+        
+    // generate random integer between 1 and 500 for pageID, to mimic randomness
+     var genrePageId = Math.floor(Math.random() * (500 - 2) + 1);
+            
+    // send parameters to getRandomGenre function
+    getRandomGenre(genreId, genreText, genrePageId);
+})
+
+
+$(document).ready(function(){
+        if ($('#genre-combo').value == null){
+           $('#refresh-btn').hide();
+           console.log("true" + "Value:" + $('#genre-combo').value) 
+        } else {
+            $('#refresh-btn').show(); 
+            console.log("false" + "Value:" + $('#genre-combo').value) 
+        };
+    });
 
 //commented code abyss of cataclysm
 
