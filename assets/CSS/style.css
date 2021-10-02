@@ -8,6 +8,14 @@ header {
     height: 100%;
     padding: 20px;
     background-color: #5BDB94;
+    color: #1A202C;
+}
+
+header i {
+    font-size: 60px;
+    color: #05396B;
+    float: right;
+    padding-left: 20px;
 }
 
 body {
@@ -16,6 +24,10 @@ body {
     /* background: rgb(210,153,244); */
     
      background-color: #EDF5E0;
+}
+
+body h1 h2 h3 p {
+    color: #1A202C;
 }
 
 button {

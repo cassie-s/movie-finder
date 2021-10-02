@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/CSS/reset.css">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    /> 
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +20,8 @@
 </head>
 <body>
     <header>
-        <h1 class="text-5xl mt-8 font-bold text-center font-sans">Movie Finder</h1>
+        <i class="fas fa-film"></i>
+        <h1 class="text-5xl font-bold text-right font-sans">Movie Finder</h1>
     </header>
     <main>
 
@@ -29,11 +36,10 @@
 
             <!-- could use and icon for the bookmark btn -->
             <button class="text-white font-bold py-2 px-4 rounded-full">
-                Render Bookmarked Movie List
+                <i class="fas fa-bookmark"></i>View Bookmarked Movies
             </button>
             
         </section>
-
 
         <!-- lets keep the hardcoded buttons to the left of the search bar -->
         <!-- When a genre is selected random movie cards dynamically appear, populated with suggested random movies -->
@@ -125,15 +131,15 @@
 
             <div>
 
-            <div id="selected-movie-title"> Selected Movie</div>
+            <div id="selected-movie-title"> Selected Movie:</div>
             <img id="selected-movie-img" href="">
 
-            <div id="selected-movie-rating">Rating</div>
-            <div id="selected-movie-location">Where To Watch</div>
+            <div id="selected-movie-rating">Rating:</div>
+            <div id="selected-movie-location">Where To Watch:</div>
 
             </div>
 
-            <button id ="bookmark-btn">Bookmark</button>
+            <button class="text-white font-bold py-2 px-4 rounded-full" id ="bookmark-btn">Bookmark</button>
 
         </section>
         
