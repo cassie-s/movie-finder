@@ -1,41 +1,90 @@
-//function to get random movies
-var getRandomMovie = function (genreId) {
-    
+//function to get random movies in selected genre
+var getRandomGenre = function (genreId, genreText, genrePageId) {
+    // set title somewhere to genreText
+    // $('#movie-results).text = "Showing movies in the " + genreText + " genre."    
+
     fetch('https://api.themoviedb.org/3/discover/movie?'
     
     + 'api_key=3e05de6918321bc70bb8260fdbd331f3'
 
+    + '&include_adult=false'
+
     + '&with_genres='
 
-    + genreId)
+    + genreId
+    
+    + '&page='
+    
+    + genrePageId)
                               
         .then(response => response.json())
         .then(response => {
-
-            //for(var i = 0; i < response.pages.length; i++ )
-
-            var title = response.results[1].title;
-            console.log(title);
-            var image = response.results[1].poster_path;
-            console.log(image);
-            var rating = response.results[1].vote_average;//out of 10
-            console.log(rating);
-            var description = response.results[1].overview;
-            console.log(description);
+            var genreList = {};
+            for(var i = 0; i < 10; i++ ){
+                var genreObject = {};
+                genreObject['tmdbId'] = response.results[i].id
+                genreObject['title'] = response.results[i].title;
+                genreObject['image'] = response.results[i].poster_path;
+                genreObject['rating'] = response.results[i].vote_average;//out of 10
+                genreObject['description'] = response.results[i].overview;
+                genreList[i] = genreObject;
+            }
+            console.log(genreList);
         });
+    
+    
     };
 
 //start of function for getting combo-box value
 $('#genre-combo').change(function () {
-    //testing combo box output, can remove
-    var genrePickVal = this.value;
-    var genrePickText = $( "#genre-combo option:selected" ).text();
-    console.log("Value: "+ genrePickVal);
-    console.log("Text: "+ genrePickText);
 
-    getRandomMovie(genrePickVal);
+    // set combobox ID to value of selected option in combobox
+    var genreId = this.value;
+
+    // set combobox text to value of selected option in combobox
+    var genreText = $( "#genre-combo option:selected" ).text();
+
+    // generate random integer between 1 and 500 for pageID, to mimic randomness
+    var genrePageId = Math.floor(Math.random() * (500 - 2) + 1);
+    
+    // send parameters to getRandomGenre function
+    getRandomGenre(genreId, genreText, genrePageId);
 });
 
+//function to get random movies
+var getRandomMovies = function () {
+
+    // generate random integer between 1 and 500 for pageID, to mimic randomness
+    var moviePageId = Math.floor(Math.random() * (500 - 2) + 1);
+
+    // set title somewhere to genreText
+    // $('#movie-results).text = "Showing movies in the " + genreText + " genre."    
+
+    fetch('https://api.themoviedb.org/3/discover/movie?'
+    
+    + 'api_key=3e05de6918321bc70bb8260fdbd331f3'
+
+    + '&include_adult=false'
+   
+    + '&page='
+    
+    + moviePageId)
+                              
+        .then(response => response.json())
+        .then(response => {
+            var movieList = {};
+            for(var i = 0; i < 10; i++ ){
+                var movieObject = {};
+                movieObject['tmdbId'] = response.results[i].id
+                movieObject['title'] = response.results[i].title;
+                movieObject['image'] = response.results[i].poster_path;
+                movieObject['rating'] = response.results[i].vote_average;//out of 10
+                movieObject['description'] = response.results[i].overview;
+                movieList[i] = movieObject;
+            }
+            console.log(movieList);
+        });
+    };
 
 
 //commented code abyss of cataclysm
@@ -53,38 +102,3 @@ $('#genre-combo').change(function () {
 //                    '='~'          \\_    
 //                                    ~~'
 
-//store tmdb api key to avoid typos
-// var tmdbApiKey="api_key=3e05de6918321bc70bb8260fdbd331f3"
-
-// //store utelly api key to avoid typos
-// var utellyApiKey="rapidapi-key=bbb550455emsh90631cae1cb42dcp1fb394jsn26315c4b067a"
-
-// //utelly lookup url - needs TMDB movie ID
-// var utellyUrlApi = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?" + utellyApiKey +"&source_id=" + tmdbMovieID+ "&source=tmdb&country=us"
-
-
-/* above list will always get latest movies.  possible solution is to fetch latest movie, store value
-    and then roll random number between 0 and latest movie.  Then randomly pick a number to fetch from the database.
-    Would need to check and make sure you get 200 response vs 404 response to display movie.
-    
-    Suggest:
-    1) On load, do initial fetch, grab latest id, or just use 550988
-    2) in getrandommovie, do a for each loop until 10 successes, doing random number between 1 and latestId
-    3) store output in array
-    4) post array to autogenerated cards
-
-    */
- // create the basic tmdb api url for fetching movies
- //var tmdbGenApiUrl = "https://api.themoviedb.org/3/discover/movie?" + tmdbApiKey + "&include_adult=false";
-
- 
-// request to get url
-//     fetch(tmdbGenApiUrl).then(function (response) {
-//         if (response.ok) {
-//             console.log("Response OK");
-//             console.log(this);
-//         } else {
-//             console.log("Response Not OK");
-//         }
-//     });
-// };
