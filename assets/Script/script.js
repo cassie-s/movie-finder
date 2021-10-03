@@ -19,7 +19,8 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
                               
         .then(response => response.json())
         .then(response => {
-            var genreList = {};
+            var genreList = [];
+            //note: i changed the curly braces for [] in genreList
             for(var i = 0; i < 10; i++ ){
                 var genreObject = {};
                 genreObject['tmdbId'] = response.results[i].id
@@ -30,10 +31,61 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
                 genreList[i] = genreObject;
             }
             console.log(genreList);
+            renderGenreMovies(genreList)
         });
     
     
     };
+
+    function renderGenreMovies(genreList) {
+
+        for(var i = 0; i < genreList.length; i++) {
+
+            //var cardId = genreList[i].id
+            //console.log(cardId)
+
+            var cardTitle = document.createElement('h3')
+            cardTitle.textContent = genreList[i].title
+            console.log(cardTitle)
+            $('#' + i).append(cardTitle);
+
+
+            var cardImage = document.createElement('img');
+            var url = "https://image.tmdb.org/t/p/w500" + genreList[i].image;
+            console.log(url);
+            //cardImage.textContent = genreList[i].image
+            cardImage.setAttribute("src", url); //"https://image.tmdb.org/t/p/w500" + genreList[i].image
+            cardImage.setAttribute("width", '50px');
+            console.log(cardImage);
+            var nextObj = "main section div#" + i;
+            $(nextObj).html(cardImage);
+
+
+            // var html = $(cardImage).html()
+            // $('#' + i).append(html);
+
+
+            // if(genreList[i].image === null) {
+            //     //placeholder
+            // } else {}
+
+            var cardRating = document.createElement('p')
+            cardRating.textContent = genreList[i].rating
+            console.log(cardRating)
+            $('#' + i).append( cardRating )
+
+            var cardDescription = document.createElement('p')
+            cardDescription.textContent = genreList[i].description
+            console.log(cardDescription)
+            $('#' + i).append(cardDescription);
+
+
+            //var card = document.createElement('')
+            // card .textContent = genreList[i].
+
+        }
+    }
+    
 
 //start of function for getting combo-box value
 $('#genre-combo').change(function () {
