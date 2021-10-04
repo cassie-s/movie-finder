@@ -38,5 +38,27 @@ button:hover {
     background-color: #5BDB94;
 }
 
+.card-title {
+    font-size: larger;
+    font-weight: bolder;
+    margin-bottom: 5%;
+    width: 100%;
+    text-align: center;
+}
+.card-image {
+width: fit-content;
+height: 375px;
+text-align: center;
+}
+.card-description {
+    font-size: 16px;
+    text-align: center;
+    margin: 6% 4% 4% 4%;
+}
+.card-rating {
+    font-weight: bolder;
+    font-size: large;
+}
+
 
 
