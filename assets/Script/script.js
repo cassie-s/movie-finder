@@ -54,7 +54,7 @@ function renderGenreMovies(genreList) {
 
         var cardImage = document.createElement('img');
         cardImage.setAttribute("src", imageUrl);
-        cardImage.setAttribute("width", '50px');
+        // cardImage.setAttribute("width", '100px');
         cardImage.setAttribute("class", "card-image");
         var setImgLocation = "main section div#" + i;
         $(setImgLocation).html(cardImage);
@@ -65,15 +65,16 @@ function renderGenreMovies(genreList) {
         console.log(cardTitle);
         $('#' + i).append(cardTitle);
 
+        var cardRating = document.createElement('p');
+        cardRating.textContent = (" Rating: " + genreList[i].rating);
+        cardRating.setAttribute("class", "card-rating");
+        $('#' + i).append(cardRating);
+
         var cardDescription = document.createElement('p');
-        cardDescription.textContent = genreList[i].description;
+        cardDescription.textContent = ("Description: " + genreList[i].description);
         cardDescription.setAttribute("class", "card-description");
         $('#' + i).append(cardDescription);
 
-        var cardRating = document.createElement('p');
-        cardRating.textContent = genreList[i].rating;
-        cardRating.setAttribute("class", "card-rating");
-        $('#' + i).append(cardRating);
     };
 };
 
