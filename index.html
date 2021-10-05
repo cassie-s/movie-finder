@@ -27,18 +27,18 @@
 
 
         <section class="inline-block">
-            <form>
-                <input class="py-2 px-6" type="text" placeholder="Search for a Movie Genre!" class="movie-search" id="movie-input">
-            </form>
-            <button class="text-white font-bold py-2 px-4 rounded-full">
-                Submit
+            <button id="random-btn" class="text-white font-bold py-2 px-4 rounded-full visible">
+                <i class="fas fa-search"></i> Get Movies!
             </button>
 
             <!-- could use and icon for the bookmark btn -->
-            <button class="text-white font-bold py-2 px-4 rounded-full">
-                <i class="fas fa-bookmark"></i>View Bookmarked Movies
+            <button id="bookmark-btn" class="text-white font-bold py-2 px-4 rounded-full visible">
+                <i class="fas fa-bookmark"></i> View Bookmarked Movies
             </button>
-            
+            <!-- add button to toggle bookmark pane and keep invisible on load-->
+            <button id="return-btn" class="text-white font-bold py-2 px-4 rounded-full invisible">
+                <i class="fas fa-film"></i> Return to Search
+            </button>
         </section>
 
         <!-- lets keep the hardcoded buttons to the left of the search bar -->
@@ -81,6 +81,7 @@
             Refresh Suggestions
         </button>
 
+        <!-- Search results container-->
         <section class="grid lg:grid-rows-2 lg:grid-cols-5 sm:auto-cols-max-2 sm: auto-rows-max-5 gap-x-6 gap-y-6" id="suggested-movie-cards">
 
             <div id="0" class="mt-4 mb-4 bg-white rounded shadow border">
@@ -117,7 +118,42 @@
 
         </section>
         
+        <!-- Bookmarks View Container-->
+        <section class="grid lg:grid-rows-2 lg:grid-cols-5 sm:auto-cols-max-2 sm: auto-rows-max-5 gap-x-6 gap-y-6 invisible" id="bookmark-cards">
 
+            <div id="0" class="mt-4 mb-4 bg-white rounded shadow border">
+                <div id="img-div"></div>
+            </div>
+            <div id="1" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+            <div id="2" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+            <div id="3" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+            <div id="4" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+            <div id="5" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+            <div id="6" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+            <div id="7" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+            <div id="8" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+
+            <div id="9" class="mt-4 mb-4 bg-white rounded shadow border">
+                
+            </div>
+
+        </section>
 
         <!-- this dashboard is only for the user selected movie, not for the random movie suggestions -->
         <!-- could have a bookmark button that saves the movie info to local storage -->
