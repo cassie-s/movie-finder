@@ -43,7 +43,7 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
 
 function renderGenreMovies(genreList) {
 
-    for (var i = 0; i <= genreList.length; i++) {
+    for (var i = 0; i < genreList.length; i++) {
 
         
         if (genreList[i].image === null) {
@@ -141,7 +141,7 @@ var getRandomMovies = function () {
 //function to show random movies - pretty much same as render
 function renderMovies(movieList) {
 
-    for (var i = 0; i <= movieList.length; i++) {
+    for (var i = 0; i < movieList.length; i++) {
 
         
         if (movieList[i].image === null) {
