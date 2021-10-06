@@ -153,14 +153,11 @@ var getRandomMovies = function () {
 $(document).on('click', '.movieId', function(){
     var movieId = this.value;
     console.log(movieId);
-    //whereToWatch('93456')
     whereToWatch(movieId)
     //reset value of 'a' or do I need to reset movieId?
     $(this).val('');
     movieId = '';
 })
-
-
 
 function whereToWatch(movieId) {
 
@@ -181,7 +178,8 @@ function whereToWatch(movieId) {
             // response.collection.locations.length
             var watch = response.collection
             var watchPlatform = {}
-            for (var i = 0; i < watch.locations.length; i++) {
+            //for (var i = 0; i <  watch.locations.length; i++)
+            for (var i = 0; i < 2; i++) {
                 watchPlatform['company'] = watch.locations[i].display_name
                 watchPlatform['url'] = watch.locations[i].url
                 watchPlatform['icon'] = watch.locations[i].icon

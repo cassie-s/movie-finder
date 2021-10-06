@@ -77,3 +77,8 @@ align-self: flex-end;
 
 
 
+#movieId {
+    width: 100px;
+    height: 100px;
+    background-color: #5BDB94;
+}
