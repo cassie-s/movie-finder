@@ -3,7 +3,7 @@ var movieId = '';
 //function to get random movies in selected genre
 var getRandomGenre = function (genreId, genreText, genrePageId) {
     // set title somewhere to genreText
-    // $('#movie-results).text = "Showing movies in the " + genreText + " genre."    
+    $('#headline-txt').text("Showing movies in the " + genreText + " genre.");
 
     fetch('https://api.themoviedb.org/3/discover/movie?'
 
@@ -48,7 +48,7 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
 
 function renderGenreMovies(genreList) {
 
-    for (var i = 0; i <= genreList.length; i++) {
+    for (var i = 0; i < genreList.length; i++) {
 
         
         if (genreList[i].image === null) {
@@ -80,6 +80,7 @@ function renderGenreMovies(genreList) {
         cardDescription.textContent = ("Description: " + genreList[i].description);
         cardDescription.setAttribute("class", "card-description");
         $('#' + i).append(cardDescription);
+
     };
 };
 
@@ -110,7 +111,7 @@ var getRandomMovies = function () {
     var moviePageId = Math.floor(Math.random() * (500 - 2) + 1);
 
     // set title somewhere to genreText
-    // $('#movie-results).text = "Showing movies in the " + genreText + " genre."    
+    $('#headline-txt').text("Movies");    
 
     fetch('https://api.themoviedb.org/3/discover/movie?'
 
@@ -128,7 +129,7 @@ var getRandomMovies = function () {
 
         .then(response => response.json())
         .then(response => {
-            var movieList = {};
+            var movieList = [];
             for (var i = 0; i < 10; i++) {
                 var movieObject = {};
                 movieObject['tmdbId'] = response.results[i].id
@@ -139,6 +140,7 @@ var getRandomMovies = function () {
                 movieList[i] = movieObject;
             }
             console.log(movieList);
+            renderMovies(movieList);
         });
 };
 
@@ -176,6 +178,48 @@ whereToWatch('14872')
 //watchPlatform[''] = watch[i].id
 
 //watchPlatform[''] = watch[i].name
+//function to show random movies - pretty much same as render
+function renderMovies(movieList) {
+
+    for (var i = 0; i < movieList.length; i++) {
+
+        
+        if (movieList[i].image === null) {
+            var imageUrl = "./assets/Images/null.jpg";
+        } else {
+            var imageUrl = "https://image.tmdb.org/t/p/w500" + movieList[i].image;
+        };
+
+        var cardImage = document.createElement('img');
+        cardImage.setAttribute("src", imageUrl);
+        // cardImage.setAttribute("width", '100px');
+        cardImage.setAttribute("class", "card-image");
+        var setImgLocation = "main section div#" + i;
+        $(setImgLocation).html(cardImage);
+
+        var cardTitle = document.createElement('p');
+        cardTitle.textContent = movieList[i].title;
+        cardTitle.setAttribute("class", "card-title")
+        console.log(cardTitle);
+        $('#' + i).append(cardTitle);
+
+        var cardRating = document.createElement('p');
+        cardRating.textContent = (" Rating: " + movieList[i].rating);
+        cardRating.setAttribute("class", "card-rating");
+        $('#' + i).append(cardRating);
+
+        var cardDescription = document.createElement('p');
+        cardDescription.textContent = ("Description: " + movieList[i].description);
+        cardDescription.setAttribute("class", "card-description");
+        $('#' + i).append(cardDescription);
+
+    };
+};
+
+// intercept button click to show random movies
+$('#random-btn').click(function() {
+    getRandomMovies();
+})
 
 $('#refresh-btn').click(function () {
     // set combobox ID to value of selected option in combobox
@@ -191,16 +235,70 @@ $('#refresh-btn').click(function () {
     getRandomGenre(genreId, genreText, genrePageId);
 })
 
-// to-do: add function for "Get Random Movies" once ui elements in place
+// when clicking view bookmarked movies, hide unrelated elements and show bookmark features
+$('#bookmark-btn').click(function() {
+    $('#suggested-movie-cards').addClass('hidden');
+    $('#random-btn').addClass('hidden');
+    $('#bookmark-btn').addClass('hidden');
+    $('#genre-pick-box').addClass('hidden');
+    $('#return-btn').removeClass('hidden');
+    $('#bookmark-cards').removeClass('hidden');
+    $('#headline-txt').text("Bookmarks");
+    $('#refresh-btn').hide();
+})
+
+// when clicking return button, hide bookmark related and show main page
+$('#return-btn').click(function() {
+    $('#suggested-movie-cards').removeClass('hidden');
+    $('#random-btn').removeClass('hidden');
+    $('#bookmark-btn').removeClass('hidden');
+    $('#genre-pick-box').removeClass('hidden');
+    $('#return-btn').addClass('hidden');
+    $('#bookmark-cards').addClass('hidden');
+    $('#headline-txt').text("Movies");
+ 
+    if ($("#genre-combo option:selected").val() > 0) {
+        console.log("True: " + $("#genre-combo option:selected").val());
+        $('#refresh-btn').show();
+    } else {
+        console.log("False: " + $("#genre-combo option:selected").val());
+    };
+})
+
 
 $(document).ready(function () {
-    if ($('#genre-combo').value == null) {
+    if ($("#genre-combo option:selected").val() == 0) {
         $('#refresh-btn').hide();
-        console.log("true" + "Value:" + $('#genre-combo').value)
+        console.log("true: " + "Value:" + $("#genre-combo option:selected").val())
     } else {
         $('#refresh-btn').show();
-        console.log("false" + "Value:" + $('#genre-combo').value)
+        console.log("false: " + "Value:" + $("#genre-combo option:selected").val())  
     };
+    // save and display bookmarked movies to local storage
+
+    let savedMovies = {}
+
+    var displayBookmarks = function() {
+    savedMovies = JSON.parse(localStorage.getItem("movieObject"));
+
+    }
+
+    // Needs to be finished - waiting for Selected Movie population
+    
+    displayBookmarks();
+
+
+    var bookmarkMovies = function() {
+    
+    localStorage.setItem("movieObject", JSON.stringify(savedMovies))
+    }
+
+    $("#saved-btn").click(function() {
+
+    console.log("hello");
+    bookmarkMovies();
+
+    }); 
 });
 
 
