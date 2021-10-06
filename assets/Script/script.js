@@ -310,11 +310,20 @@ $(document).ready(function () {
     };
     // save and display bookmarked movies to local storage
 
-    let savedMovies = {}
+    var bookmarkDiv = document.querySelector('#bookmark-cards');
+
+    var savedMovies = {}
 
     var displayBookmarks = function () {
-        savedMovies = JSON.parse(localStorage.getItem("movieObject"));
+        var bookmark = localStorage.getItem('bookmark');
+        savedMovies = JSON.parse(localStorage.getItem("movieObject", '#movie-id'));
 
+        if(bookmark === null || savedMovies === null) {
+            return;
+        }
+
+        //Set the text of the bookmark-card
+        bookmarkDiv.textContent = 'hello';
     }
 
     // Needs to be finished - waiting for Selected Movie population
@@ -324,11 +333,13 @@ $(document).ready(function () {
 
     var bookmarkMovies = function () {
 
-        localStorage.setItem("movieObject", JSON.stringify(savedMovies))
+        localStorage.setItem("movieObject", JSON.stringify('#movie-id'))
     }
 
-    $("#saved-btn").click(function () {
+    $("#saved-btn").click(function(event) {
+        event.preventDefault();
 
+        
         console.log("hello");
         bookmarkMovies();
 
@@ -336,29 +347,6 @@ $(document).ready(function () {
 });
 
 
-// save and display bookmarked movies to local storage
-var displayBookmarks = function () {
-    savedMovies = JSON.parse(localStorage.getItem("movies"));
-
-}
-
-let savedMovies = {
-
-}
-
-var bookmarkMovies = function () {
-    localStorage.setItem("movies", JSON.stringify(savedMovies))
-}
-
-var movies = JSON.parse(localStorage.getItem('movies')) || [];
-
-$("#bookmark-btn").click(function () {
-
-    bookmarkMovies();
-
-});
-
-displayBookmarks();
 
 //commented code abyss of cataclysm
 
