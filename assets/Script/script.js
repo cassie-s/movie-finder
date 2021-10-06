@@ -1,5 +1,3 @@
-var movieId = '';
-
 //function to get random movies in selected genre
 var getRandomGenre = function (genreId, genreText, genrePageId) {
     // set title somewhere to genreText
@@ -18,7 +16,7 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
 
             +
             genreId
-    
+
             +
             '&page='
 
@@ -32,8 +30,8 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
             for (var i = 0; i < 10; i++) {
                 var genreObject = {};
 
-                movieId = response.results[i].id
-                //genreObject['tmdbId'] = response.results[i].id
+                //movieId = response.results[i].id
+                genreObject['id'] = response.results[i].id
                 genreObject['title'] = response.results[i].title;
                 genreObject['image'] = response.results[i].poster_path;
                 genreObject['rating'] = response.results[i].vote_average; //out of 10
@@ -41,7 +39,7 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
                 genreList[i] = genreObject;
             }
             console.log(genreList);
-            renderWhereToWatch(movieId)
+            //renderWhereToWatch(movieId)
             renderGenreMovies(genreList)
         });
 };
@@ -50,7 +48,6 @@ function renderGenreMovies(genreList) {
 
     for (var i = 0; i < genreList.length; i++) {
 
-        
         if (genreList[i].image === null) {
             var imageUrl = "./assets/Images/null.jpg";
         } else {
@@ -81,6 +78,14 @@ function renderGenreMovies(genreList) {
         cardDescription.setAttribute("class", "card-description");
         $('#' + i).append(cardDescription);
 
+        var movieId = document.createElement('button');
+        movieId.setAttribute('value', genreList[i].id)
+        movieId.setAttribute('class', 'text-white font-bold py-2 px-4 rounded-full movieId')
+        movieId.textContent = 'Click Here To Watch!'
+        console.log(genreList[i].id);
+        console.log(movieId);
+        $('#' + i).append(movieId);
+        //$('#' + i).append(movieId);
     };
 };
 
@@ -111,7 +116,7 @@ var getRandomMovies = function () {
     var moviePageId = Math.floor(Math.random() * (500 - 2) + 1);
 
     // set title somewhere to genreText
-    $('#headline-txt').text("Movies");    
+    $('#headline-txt').text("Movies");
 
     fetch('https://api.themoviedb.org/3/discover/movie?'
 
@@ -139,51 +144,80 @@ var getRandomMovies = function () {
                 movieObject['description'] = response.results[i].overview;
                 movieList[i] = movieObject;
             }
-            console.log(movieList);
+            //console.log(movieList);
             renderMovies(movieList);
         });
 };
+
+//listens for the click of button (could switch to an "a" tag), then that card's movie id is send to the 'where to watch' function
+$(document).on('click', '.movieId', function(){
+    var movieId = this.value;
+    console.log(movieId);
+    //whereToWatch('93456')
+    whereToWatch(movieId)
+    //reset value of 'a' or do I need to reset movieId?
+    $(this).val('');
+    movieId = '';
+})
+
+
 
 function whereToWatch(movieId) {
 
     fetch('https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?'
 
-    + 'rapidapi-key=bbb550455emsh90631cae1cb42dcp1fb394jsn26315c4b067a'
-    + '&source_id='
-    + movieId
-    + '&source=tmdb&country=us')
-    .then(response => response.json())
-    .then(response => { 
+            +
+            'rapidapi-key=bbb550455emsh90631cae1cb42dcp1fb394jsn26315c4b067a' 
+            +
+            '&source_id=' 
+            +
+            movieId 
+            +
+            '&source=tmdb&country=us')
+        .then(response => response.json())
+        .then(response => {
 
-        watchLocations = {}
-       // response.collection.locations.length
-       var watch = response.collection
-       var watchPlatform = {}
-       for (var i = 0; i < 1; i++) {
-        watchPlatform['company'] = watch.locations[i].display_name
-        watchPlatform['url'] = watch.locations[i].url
-        watchPlatform['icon'] = watch.locations[i].icon
-       watchLocations[i] = watchPlatform
-       }
-       console.log(watchLocations)
-     })
+            watchLocations = {}
+            // response.collection.locations.length
+            var watch = response.collection
+            var watchPlatform = {}
+            for (var i = 0; i < watch.locations.length; i++) {
+                watchPlatform['company'] = watch.locations[i].display_name
+                watchPlatform['url'] = watch.locations[i].url
+                watchPlatform['icon'] = watch.locations[i].icon
+                watchLocations[i] = watchPlatform
+            }
+            console.log(watchLocations)
+            renderWhereToWatch(watchLocations)
+        })
 }
+
 
 function renderWhereToWatch(watchLocations) {
+    for (var i = 0; i < 1; i++) {
+        var company = document.createElement('p');
+        company.setAttribute('class', 'company');
+        company.textContent = watchLocations[i].company;
+        $('#selected-movie-location').append(company);
 
+        var url = document.createElement('a');
+        url.setAttribute('id', 'url');
+        url.setAttribute('href', watchLocations[i].url);
+        $('#selected-movie-location').append(url);
+
+        var icon = document.createElement('img');
+        icon.setAttribute('id', 'icon');
+        icon.setAttribute('src', watchLocations[i].icon);
+        $('#url').append(icon);
+    }
 }
 
-whereToWatch('14872')
-
-//watchPlatform[''] = watch[i].id
-
-//watchPlatform[''] = watch[i].name
 //function to show random movies - pretty much same as render
 function renderMovies(movieList) {
 
     for (var i = 0; i < movieList.length; i++) {
 
-        
+
         if (movieList[i].image === null) {
             var imageUrl = "./assets/Images/null.jpg";
         } else {
@@ -216,8 +250,10 @@ function renderMovies(movieList) {
     };
 };
 
+
+
 // intercept button click to show random movies
-$('#random-btn').click(function() {
+$('#random-btn').click(function () {
     getRandomMovies();
 })
 
@@ -236,7 +272,7 @@ $('#refresh-btn').click(function () {
 })
 
 // when clicking view bookmarked movies, hide unrelated elements and show bookmark features
-$('#bookmark-btn').click(function() {
+$('#bookmark-btn').click(function () {
     $('#suggested-movie-cards').addClass('hidden');
     $('#random-btn').addClass('hidden');
     $('#bookmark-btn').addClass('hidden');
@@ -248,7 +284,7 @@ $('#bookmark-btn').click(function() {
 })
 
 // when clicking return button, hide bookmark related and show main page
-$('#return-btn').click(function() {
+$('#return-btn').click(function () {
     $('#suggested-movie-cards').removeClass('hidden');
     $('#random-btn').removeClass('hidden');
     $('#bookmark-btn').removeClass('hidden');
@@ -256,7 +292,7 @@ $('#return-btn').click(function() {
     $('#return-btn').addClass('hidden');
     $('#bookmark-cards').addClass('hidden');
     $('#headline-txt').text("Movies");
- 
+
     if ($("#genre-combo option:selected").val() > 0) {
         console.log("True: " + $("#genre-combo option:selected").val());
         $('#refresh-btn').show();
@@ -269,59 +305,59 @@ $('#return-btn').click(function() {
 $(document).ready(function () {
     if ($("#genre-combo option:selected").val() == 0) {
         $('#refresh-btn').hide();
-        console.log("true: " + "Value:" + $("#genre-combo option:selected").val())
+        //console.log("true: " + "Value:" + $("#genre-combo option:selected").val())
     } else {
         $('#refresh-btn').show();
-        console.log("false: " + "Value:" + $("#genre-combo option:selected").val())  
+        console.log("false: " + "Value:" + $("#genre-combo option:selected").val())
     };
     // save and display bookmarked movies to local storage
 
     let savedMovies = {}
 
-    var displayBookmarks = function() {
-    savedMovies = JSON.parse(localStorage.getItem("movieObject"));
+    var displayBookmarks = function () {
+        savedMovies = JSON.parse(localStorage.getItem("movieObject"));
 
     }
 
     // Needs to be finished - waiting for Selected Movie population
-    
+
     displayBookmarks();
 
 
-    var bookmarkMovies = function() {
-    
-    localStorage.setItem("movieObject", JSON.stringify(savedMovies))
+    var bookmarkMovies = function () {
+
+        localStorage.setItem("movieObject", JSON.stringify(savedMovies))
     }
 
-    $("#saved-btn").click(function() {
+    $("#saved-btn").click(function () {
 
-    console.log("hello");
-    bookmarkMovies();
+        console.log("hello");
+        bookmarkMovies();
 
-    }); 
+    });
 });
 
 
 // save and display bookmarked movies to local storage
-var displayBookmarks = function() {
+var displayBookmarks = function () {
     savedMovies = JSON.parse(localStorage.getItem("movies"));
-    
+
 }
 
 let savedMovies = {
 
 }
 
-var bookmarkMovies = function() {
+var bookmarkMovies = function () {
     localStorage.setItem("movies", JSON.stringify(savedMovies))
 }
 
 var movies = JSON.parse(localStorage.getItem('movies')) || [];
 
-$("#bookmark-btn").click(function() {
+$("#bookmark-btn").click(function () {
 
-bookmarkMovies();
-    
+    bookmarkMovies();
+
 });
 
 displayBookmarks();
