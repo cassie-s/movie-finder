@@ -236,6 +236,34 @@ $(document).ready(function () {
     };
 });
 
+// // save and display bookmarked movies to local storage
+
+// var list = JSON.parse(localStorage.getItem('bookmarklist')) || [];
+
+// // Render Bookmarks to the page
+// function renderBookmarks(list) {
+//     //Empties out the html
+//     $('#bookmark-cards').empty();
+
+//     //Iterates over the 'list'
+//     for (var i = 0; i < list.length; i++) {
+//         var movieItem = $('<div>');
+//         movieItem.text(list[i]);
+//     }
+// }
+
+
+// $("#bookmark-btn").click(function() {
+//     event.preventDefault();
+
+//     var bookmarkList = $('#bookmark-cards')
+//         .val()
+//         .trim();
+    
+// });
+
+// displayBookmarks();
+
 //commented code abyss of cataclysm
 
 //                          ___......__             _             |
