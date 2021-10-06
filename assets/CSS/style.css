@@ -9,6 +9,7 @@ header {
     padding: 20px;
     background-color: #5BDB94;
     color: #1A202C;
+    z-index: 9999;
 }
 
 header i {

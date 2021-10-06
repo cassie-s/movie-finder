@@ -20,24 +20,24 @@
     <link rel="icon" href="favicon.ico" type="image/ico" sizes="16x16">
 </head>
 <body>
-    <header>
+    <header class="sticky top-0">
         <i class="fas fa-film"></i>
         <h1 class="text-5xl font-bold text-right font-sans">Movie Finder</h1>
     </header>
     <main>
 
 
-        <section class="inline-block">
-            <button id="random-btn" class="text-white font-bold py-2 px-4 rounded-full">
+        <section class="mt-10 flex md:items-center md:justify-center space-x-6">
+            <button id="random-btn" class="text-white font-bold py-2 px-4 rounded-full animate-pulse">
                 <i class="fas fa-search"></i> Get Movies!
             </button>
-
+         
             <!-- could use and icon for the bookmark btn -->
             <button id="bookmark-btn" class="text-white font-bold py-2 px-4 rounded-full">
                 <i class="fas fa-bookmark"></i> View Bookmarked Movies
             </button>
             <!-- add button to toggle bookmark pane and keep invisible on load-->
-            <button id="return-btn" class="mt-8 text-white font-bold py-2 px-4 rounded-full hidden">
+             <button id="return-btn" class="mt-8 text-white font-bold py-2 px-4 rounded-full hidden">
                 <i class="fas fa-film"></i> Return to Search
             </button>
         </section>
@@ -45,10 +45,10 @@
         <!-- lets keep the hardcoded buttons to the left of the search bar -->
         <!-- When a genre is selected random movie cards dynamically appear, populated with suggested random movies -->
         <!-- when a genre is selected then another is selected the old cards are populated with the new genre -->
-        <div id="genre-pick-box" class="mt-2 inline-block relative">
+        <div id="genre-pick-box" class="mt-2 flex  justify-center items-center gap-2">
 
             <h2 class="text-xl mt-3 font-bold font-sans">Search By Popular Genres</h2>
-            <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"  id="genre-combo">
+            <select class="mt-3 appearance-none  bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"  id="genre-combo">
                 <option disabled selected value="0">Choose a genre ...</option>
                 <option value="28">Action</option>
                 <option value="12">Adventure</option>
@@ -70,16 +70,15 @@
                 <option value="10752">War</option>
                 <option value="37">Western</option>
             </select>
+        <!-- section will have a refresh button to let user see new suggestions -->
+        <button id="refresh-btn" class="mt-3 text-white font-bold py-2 px-4 rounded-full">
+            Refresh Suggestions
+        </button>
         </div>
 
 
 
         <!-- movie cards will stay hidden until a user selecteds a genre -->
-        <!-- section will have a refresh button to let user see new suggestions -->
-
-        <button id="refresh-btn" class="text-white font-bold py-2 px-4 rounded-full">
-            Refresh Suggestions
-        </button>
         
         <div id="headline-txt" class="block text-xl mt-8 font-bold font-sans text-center">
 
@@ -161,7 +160,7 @@
 
         <!-- this dashboard is only for the user selected movie, not for the random movie suggestions -->
         <!-- could have a bookmark button that saves the movie info to local storage -->
-        <section id="selected-movie-dash">
+        <section class="hidden" id="selected-movie-dash">
 
             <div>
 
