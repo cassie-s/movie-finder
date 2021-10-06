@@ -164,26 +164,26 @@ $(document).ready(function () {
 });
 
 
-// save and display bookmarked movies to local storage
-var displayBookmarks = function() {
-    savedMovies = JSON.parse(localStorage.getItem("movieObject"));
+// // save and display bookmarked movies to local storage
+// var displayBookmarks = function() {
+//     savedMovies = JSON.parse(localStorage.getItem("movieObject"));
     
-}
+// }
 
-let savedMovies = {}
+// let savedMovies = {}
 
-var bookmarkMovies = function() {
-    localStorage.setItem("movieObject", JSON.stringify(savedMovies))
-}
+// var bookmarkMovies = function() {
+//     localStorage.setItem("movieObject", JSON.stringify(savedMovies))
+// }
 
-$("#bookmark-btn").click(function() {
-    event.preventDefault();
+// $("#bookmark-btn").click(function() {
+//     event.preventDefault();
 
-bookmarkMovies();
+// bookmarkMovies();
     
-});
+// });
 
-displayBookmarks();
+// displayBookmarks();
 
 //commented code abyss of cataclysm
 
