@@ -38,6 +38,11 @@ button:hover {
     background-color: #5BDB94;
 }
 
+/* lastchild is rating */
+.movie-cards:last-child{
+align-self: flex-end;
+}
+
 .card-title {
     font-size: larger;
     font-weight: bolder;

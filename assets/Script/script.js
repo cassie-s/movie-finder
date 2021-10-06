@@ -56,6 +56,7 @@ function renderGenreMovies(genreList) {
         cardImage.setAttribute("src", imageUrl);
         cardImage.setAttribute("width", '50px');
         cardImage.setAttribute("class", "card-image");
+        //cardImage.setAttribute("alt", genreList[i].title) //+ " Movie Poster."
         var setImgLocation = "main section div#" + i;
         $(setImgLocation).html(cardImage);
 
@@ -71,7 +72,7 @@ function renderGenreMovies(genreList) {
         $('#' + i).append(cardDescription);
 
         var cardRating = document.createElement('p');
-        cardRating.textContent = genreList[i].rating;
+        cardRating.textContent = "Rating: " +  genreList[i].rating;
         cardRating.setAttribute("class", "card-rating");
         $('#' + i).append(cardRating);
     };
