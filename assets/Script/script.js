@@ -236,6 +236,28 @@ $(document).ready(function () {
     };
 });
 
+
+// // save and display bookmarked movies to local storage
+// var displayBookmarks = function() {
+//     savedMovies = JSON.parse(localStorage.getItem("movieObject"));
+    
+// }
+
+// let savedMovies = {}
+
+// var bookmarkMovies = function() {
+//     localStorage.setItem("movieObject", JSON.stringify(savedMovies))
+// }
+
+// $("#bookmark-btn").click(function() {
+//     event.preventDefault();
+
+// bookmarkMovies();
+    
+// });
+
+// displayBookmarks();
+
 //commented code abyss of cataclysm
 
 //                          ___......__             _             |
