@@ -43,7 +43,7 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
 
 function renderGenreMovies(genreList) {
 
-    for (var i = 0; i <= genreList.length; i++) {
+    for (var i = 0; i < genreList.length; i++) {
 
         
         if (genreList[i].image === null) {
@@ -141,7 +141,7 @@ var getRandomMovies = function () {
 //function to show random movies - pretty much same as render
 function renderMovies(movieList) {
 
-    for (var i = 0; i <= movieList.length; i++) {
+    for (var i = 0; i < movieList.length; i++) {
 
         
         if (movieList[i].image === null) {
@@ -232,31 +232,37 @@ $(document).ready(function () {
         console.log("true: " + "Value:" + $("#genre-combo option:selected").val())
     } else {
         $('#refresh-btn').show();
-        console.log("false: " + "Value:" + $("#genre-combo option:selected").val())
+        console.log("false: " + "Value:" + $("#genre-combo option:selected").val())  
     };
+    // save and display bookmarked movies to local storage
+
+    let savedMovies = {}
+
+    var displayBookmarks = function() {
+    savedMovies = JSON.parse(localStorage.getItem("movieObject"));
+
+    }
+
+    // Needs to be finished - waiting for Selected Movie population
+    
+    displayBookmarks();
+
+
+    var bookmarkMovies = function() {
+    
+    localStorage.setItem("movieObject", JSON.stringify(savedMovies))
+    }
+
+    $("#saved-btn").click(function() {
+
+    console.log("hello");
+    bookmarkMovies();
+
+    }); 
 });
 
 
-// // save and display bookmarked movies to local storage
-// var displayBookmarks = function() {
-//     savedMovies = JSON.parse(localStorage.getItem("movieObject"));
-    
-// }
 
-// let savedMovies = {}
-
-// var bookmarkMovies = function() {
-//     localStorage.setItem("movieObject", JSON.stringify(savedMovies))
-// }
-
-// $("#bookmark-btn").click(function() {
-//     event.preventDefault();
-
-// bookmarkMovies();
-    
-// });
-
-// displayBookmarks();
 
 //commented code abyss of cataclysm
 
