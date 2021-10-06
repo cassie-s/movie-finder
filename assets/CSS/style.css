@@ -50,17 +50,26 @@ align-self: flex-end;
     width: 100%;
     text-align: center;
 }
+
 .card-image {
-width: fit-content;
-height: 375px;
-text-align: center;
+    /* width + margin-left + margin-right + display centers image*/
+    width: 90%; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    display: block;
+    height: 375px;
+    text-align: center;
 }
+
 .card-description {
     font-size: 16px;
     text-align: center;
     margin: 6% 4% 4% 4%;
 }
 .card-rating {
+    /* Added margin to keep it from being flush with left side */
+    margin-left: 20px;
     font-weight: bolder;
     font-size: large;
 }

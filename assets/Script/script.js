@@ -16,7 +16,7 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
 
             +
             genreId
-
+    
             +
             '&page='
 
@@ -54,7 +54,7 @@ function renderGenreMovies(genreList) {
 
         var cardImage = document.createElement('img');
         cardImage.setAttribute("src", imageUrl);
-        cardImage.setAttribute("width", '50px');
+        // cardImage.setAttribute("width", '100px');
         cardImage.setAttribute("class", "card-image");
         //cardImage.setAttribute("alt", genreList[i].title) //+ " Movie Poster."
         var setImgLocation = "main section div#" + i;
@@ -66,15 +66,15 @@ function renderGenreMovies(genreList) {
         console.log(cardTitle);
         $('#' + i).append(cardTitle);
 
-        var cardDescription = document.createElement('p');
-        cardDescription.textContent = genreList[i].description;
-        cardDescription.setAttribute("class", "card-description");
-        $('#' + i).append(cardDescription);
-
         var cardRating = document.createElement('p');
-        cardRating.textContent = "Rating: " +  genreList[i].rating;
+        cardRating.textContent = (" Rating: " + genreList[i].rating);
         cardRating.setAttribute("class", "card-rating");
         $('#' + i).append(cardRating);
+
+        var cardDescription = document.createElement('p');
+        cardDescription.textContent = ("Description: " + genreList[i].description);
+        cardDescription.setAttribute("class", "card-description");
+        $('#' + i).append(cardDescription);
     };
 };
 
@@ -137,6 +137,36 @@ var getRandomMovies = function () {
         });
 };
 
+function whereToWatch(movieId) {
+
+    fetch('https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?'
+
+    + 'rapidapi-key=bbb550455emsh90631cae1cb42dcp1fb394jsn26315c4b067a'
+    + '&source_id='
+    + movieId
+    + '&source=tmdb&country=us')
+    .then(response => response.json())
+    .then(response => { 
+
+        watchLocations = {}
+       // response.collection.locations.length
+       var watch = response.collection
+       var watchPlatform = {}
+       for (var i = 0; i < 1; i++) {
+        watchPlatform['company'] = watch.locations[i].display_name
+        watchPlatform['url'] = watch.locations[i].url
+        watchPlatform['icon'] = watch.locations[i].icon
+       watchLocations[i] = watchPlatform
+       }
+       console.log(watchLocations)
+     })
+}
+whereToWatch('14872')
+
+//watchPlatform[''] = watch[i].id
+
+//watchPlatform[''] = watch[i].name
+
 $('#refresh-btn').click(function () {
     // set combobox ID to value of selected option in combobox
     var genreId = this.value;
@@ -162,6 +192,31 @@ $(document).ready(function () {
         console.log("false" + "Value:" + $('#genre-combo').value)
     };
 });
+
+
+// save and display bookmarked movies to local storage
+var displayBookmarks = function() {
+    savedMovies = JSON.parse(localStorage.getItem("movies"));
+    
+}
+
+let savedMovies = {
+
+}
+
+var bookmarkMovies = function() {
+    localStorage.setItem("movies", JSON.stringify(savedMovies))
+}
+
+var movies = JSON.parse(localStorage.getItem('movies')) || [];
+
+$("#bookmark-btn").click(function() {
+
+bookmarkMovies();
+    
+});
+
+displayBookmarks();
 
 //commented code abyss of cataclysm
 
