@@ -1,3 +1,5 @@
+var movieId = '';
+
 //function to get random movies in selected genre
 var getRandomGenre = function (genreId, genreText, genrePageId) {
     // set title somewhere to genreText
@@ -29,7 +31,9 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
             //note: Collin changed the curly braces to [] in genreList
             for (var i = 0; i < 10; i++) {
                 var genreObject = {};
-                genreObject['tmdbId'] = response.results[i].id
+
+                movieId = response.results[i].id
+                //genreObject['tmdbId'] = response.results[i].id
                 genreObject['title'] = response.results[i].title;
                 genreObject['image'] = response.results[i].poster_path;
                 genreObject['rating'] = response.results[i].vote_average; //out of 10
@@ -37,6 +41,7 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
                 genreList[i] = genreObject;
             }
             console.log(genreList);
+            renderWhereToWatch(movieId)
             renderGenreMovies(genreList)
         });
 };
@@ -161,6 +166,11 @@ function whereToWatch(movieId) {
        console.log(watchLocations)
      })
 }
+
+function renderWhereToWatch(watchLocations) {
+
+}
+
 whereToWatch('14872')
 
 //watchPlatform[''] = watch[i].id
