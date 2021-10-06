@@ -27,18 +27,17 @@
     <main>
 
 
-        <section class="inline-block">
-            <button id="random-btn" class="text-white font-bold py-2 px-4 rounded-full">
-                <i class="fas fa-search"></i> Get Movies!
+        <section class="mt-4 inline-flex space-x-4">
+            <form>
+                <input class="py-2 px-6" type="text" placeholder="Search for a Movie Genre!" class="movie-search" id="movie-input">
+            </form>
+            <button class="text-white font-bold py-2 px-4 rounded-full">
+                Submit
             </button>
 
             <!-- could use and icon for the bookmark btn -->
-            <button id="bookmark-btn" class="text-white font-bold py-2 px-4 rounded-full">
+            <button class="text-white font-bold py-2 px-4 rounded-full">
                 <i class="fas fa-bookmark"></i> View Bookmarked Movies
-            </button>
-            <!-- add button to toggle bookmark pane and keep invisible on load-->
-            <button id="return-btn" class="mt-8 text-white font-bold py-2 px-4 rounded-full hidden">
-                <i class="fas fa-film"></i> Return to Search
             </button>
         </section>
 
@@ -161,7 +160,7 @@
 
         <!-- this dashboard is only for the user selected movie, not for the random movie suggestions -->
         <!-- could have a bookmark button that saves the movie info to local storage -->
-        <section id="selected-movie-dash">
+        <section class="hidden" id="selected-movie-dash">
 
             <div>
 
