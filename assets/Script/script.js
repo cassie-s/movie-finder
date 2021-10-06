@@ -163,6 +163,31 @@ $(document).ready(function () {
     };
 });
 
+
+// save and display bookmarked movies to local storage
+var displayBookmarks = function() {
+    savedMovies = JSON.parse(localStorage.getItem("movies"));
+    
+}
+
+let savedMovies = {
+
+}
+
+var bookmarkMovies = function() {
+    localStorage.setItem("movies", JSON.stringify(savedMovies))
+}
+
+var movies = JSON.parse(localStorage.getItem('movies')) || [];
+
+$("#bookmark-btn").click(function() {
+
+bookmarkMovies();
+    
+});
+
+displayBookmarks();
+
 //commented code abyss of cataclysm
 
 //                          ___......__             _             |
