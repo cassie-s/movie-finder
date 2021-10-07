@@ -50,6 +50,7 @@ align-self: flex-end;
     margin-bottom: 5%;
     width: 100%;
     text-align: center;
+    font-style: oblique;
 }
 
 .card-image {
@@ -68,14 +69,13 @@ align-self: flex-end;
     text-align: center;
     margin: 6% 4% 4% 4%;
 }
+
 .card-rating {
     /* Added margin to keep it from being flush with left side */
     margin-left: 20px;
     font-weight: bolder;
     font-size: large;
 }
-
-
 
 #movieId {
     width: 100px;
