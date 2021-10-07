@@ -80,7 +80,7 @@ function renderGenreMovies(genreList) {
 
         var movieId = document.createElement('button');
         movieId.setAttribute('value', genreList[i].id)
-        movieId.setAttribute('class', 'text-white font-bold py-2 px-4 rounded-full movieId')
+        movieId.setAttribute('class', 'text-white font-bold mt-3 py-2 px-4 rounded-full max-w-sm md:w-full movieId')
         movieId.textContent = 'Click Here To Watch!'
         console.log(genreList[i].id);
         console.log(movieId);
