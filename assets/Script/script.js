@@ -256,7 +256,7 @@ $('#random-btn').click(function () {
 })
 
 $('#refresh-btn').click(function () {
-    // set combobox ID to value of selected option in combobox
+    // set combobox ID to value of selected option in combobox  -- fix this it is broken
     var genreId = this.value;
 
     // set combobox text to value of selected option in combobox
