@@ -69,7 +69,7 @@ function renderGenreMovies(genreList) {
         $('#' + i).append(cardTitle);
 
         var cardRating = document.createElement('p');
-        cardRating.textContent = (" Rating: " + genreList[i].rating);
+        cardRating.textContent = ("Rating: " + genreList[i].rating + " out of 10");
         cardRating.setAttribute("class", "card-rating");
         $('#' + i).append(cardRating);
 
@@ -182,7 +182,7 @@ function renderMovies(movieList) {
         $('#' + i).append(cardTitle);
 
         var cardRating = document.createElement('p');
-        cardRating.textContent = (" Rating: " + movieList[i].rating);
+        cardRating.textContent = ("Rating: " + movieList[i].rating + " out of 10");
         cardRating.setAttribute("class", "card-rating");
         cardRating.setAttribute('value', movieList[i].tmdbId);
         $('#' + i).append(cardRating);
