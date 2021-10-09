@@ -366,13 +366,13 @@ function renderBookmarks(){
         $('#bm-' + i).append(cardTitle);
 
         var cardRating = document.createElement('p');
-        cardRating.textContent = ("Rating: " + savedMovies[i].rating + " out of 10");
+        cardRating.textContent = (savedMovies[i].rating);
         cardRating.setAttribute("class", "card-rating");
         cardRating.setAttribute('value', savedMovies[i].id);
         $('#bm-' + i).append(cardRating);
 
         var cardDescription = document.createElement('p');
-        cardDescription.textContent = ("Description: " + savedMovies[i].description);
+        cardDescription.textContent = (savedMovies[i].description);
         cardDescription.setAttribute("class", "card-description");
         cardDescription.setAttribute('value', savedMovies[i].id);
         $('#bm-' + i).append(cardDescription);
