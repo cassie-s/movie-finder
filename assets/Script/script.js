@@ -5,23 +5,23 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
 
     fetch('https://api.themoviedb.org/3/discover/movie?'
 
-            +
-            'api_key=3e05de6918321bc70bb8260fdbd331f3'
+        +
+        'api_key=3e05de6918321bc70bb8260fdbd331f3'
 
-            +
-            '&include_adult=false'
+        +
+        '&include_adult=false'
 
-            +
-            '&with_genres='
+        +
+        '&with_genres='
 
-            +
-            genreId
+        +
+        genreId
 
-            +
-            '&page='
+        +
+        '&page='
 
-            +
-            genrePageId)
+        +
+        genrePageId)
 
         .then(response => response.json())
         .then(response => {
@@ -125,17 +125,17 @@ var getRandomMovies = function () {
 
     fetch('https://api.themoviedb.org/3/discover/movie?'
 
-            +
-            'api_key=3e05de6918321bc70bb8260fdbd331f3'
+        +
+        'api_key=3e05de6918321bc70bb8260fdbd331f3'
 
-            +
-            '&include_adult=false'
+        +
+        '&include_adult=false'
 
-            +
-            '&page='
+        +
+        '&page='
 
-            +
-            moviePageId)
+        +
+        moviePageId)
 
         .then(response => response.json())
         .then(response => {
@@ -210,17 +210,17 @@ function renderMovies(movieList) {
 };
 
 //listens for the click of button (could switch to an "a" tag), then that card's movie id is send to the 'where to watch' function
-$(document).on('click', '.movieId', function(){
+$(document).on('click', '.movieId', function () {
     var movieId = this.value;
     console.log(movieId);
     whereToWatch(movieId)
-    $('#selected-movie-dash').css("display","block");
+    $('#selected-movie-dash').css("display", "block");
     //reset value of 'a' or do I need to reset movieId?
     $(this).val('');
     movieId = '';
 })
 
-$(document).on('click', '.bookmarkId', function(){
+$(document).on('click', '.bookmarkId', function () {
     // save value of bookmark button which equals tmdb id
     var selectedId = $(this).val();
     // save value of bookmarked description
@@ -243,22 +243,42 @@ $(document).on('click', '.bookmarkId', function(){
     //log the object for checking
     console.log(bookmarkItem);
 
-    // save to bookmarks
-    // saveBookmark(bookmarkItem);
-})
+    var savedMovies = [];
+
+    function loadBookmarks() {
+        console.log('Loading Bookmarks from localStorage');
+        if (localStorage.getItem(savedMovies) === null) {
+            savedMovies = [];
+        } else {
+            savedMovies = JSON.parse(localStorage.getItem(bookmarkItem));
+        }
+        console.log(savedMovies);
+    };
+    //add bookmark to local storage
+
+    function addBookmark(bookmarkItem) {
+        savedMovies.push(bookmarkItem);
+        localStorage.setItem("movies", JSON.stringify(savedMovies));
+        console.log("bookmark added" + savedMovies);
+    }
+
+    addBookmark(bookmarkItem);
+
+    //render bookmarks
+});
 
 function whereToWatch(movieId) {
 
     fetch('https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?'
 
-            +
-            'rapidapi-key=bbb550455emsh90631cae1cb42dcp1fb394jsn26315c4b067a' 
-            +
-            '&source_id=' 
-            +
-            movieId 
-            +
-            '&source=tmdb&country=us')
+        +
+        'rapidapi-key=bbb550455emsh90631cae1cb42dcp1fb394jsn26315c4b067a'
+        +
+        '&source_id='
+        +
+        movieId
+        +
+        '&source=tmdb&country=us')
         .then(response => response.json())
         .then(response => {
 
@@ -273,8 +293,8 @@ function whereToWatch(movieId) {
             // console.log("collection 3: " + watch.collection.locations[2].display_name);
             // console.log("collection 4: " + watch.collection.locations[3].display_name);
 
-            for (var i = 0; i < watch.locations.length; i++) {                
-                var watchPlatform ={};
+            for (var i = 0; i < watch.locations.length; i++) {
+                var watchPlatform = {};
                 watchPlatform['company'] = watch.locations[i].display_name;
                 watchPlatform['url'] = watch.locations[i].url;
                 watchPlatform['icon'] = watch.locations[i].icon;
@@ -375,7 +395,7 @@ $('#return-btn').click(function () {
 })
 
 $('#modal-btn').click(function () {
-    $('#selected-movie-dash').css("display","none");
+    $('#selected-movie-dash').css("display", "none");
 })
 
 $(document).ready(function () {
@@ -386,42 +406,8 @@ $(document).ready(function () {
         $('#refresh-btn').show();
         console.log("false: " + "Value:" + $("#genre-combo option:selected").val())
     };
+})
     // save and display bookmarked movies to local storage
-
-    var bookmarkDiv = document.querySelector('#bookmark-cards');
-
-    var savedMovies = {}
-
-    var displayBookmarks = function () {
-        var bookmark = localStorage.getItem('bookmark');
-        savedMovies = JSON.parse(localStorage.getItem("movieObject", '#movie-id'));
-
-        if(bookmark === null || savedMovies === null) {
-            return;
-        }
-
-        //Set the text of the bookmark-card
-        bookmarkDiv.innerHTML = 'hello';
-    }
-
-    // Needs to be finished - waiting for Selected Movie population
-
-    displayBookmarks();
-
-
-    var bookmarkMovies = function () {
-
-        localStorage.setItem("movieObject", JSON.stringify('#movie-id'))
-    }
-
-    $("#bookmark-btn").click(function(event) {
-        event.preventDefault();
-        
-        console.log("hello");
-        bookmarkMovies();
-
-    });
-});
 
 
 
@@ -440,10 +426,10 @@ $(document).ready(function () {
 //                    '='~'          \\_    
 //                                    ~~'
 
-/* Used for testing with set movie id, no longer needed
-$('#modal2-btn').click(function () {
-    $('#selected-movie-dash').css("display","block");
-    testMovieId = "10150";
-    whereToWatch(testMovieId);
-})
-*/
+// Used for testing with set movie id, no longer needed
+// $('#modal2-btn').click(function () {
+//     $('#selected-movie-dash').css("display","block");
+//     testMovieId = "10150";
+//     whereToWatch(testMovieId);
+// })
+//
