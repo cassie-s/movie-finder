@@ -211,6 +211,7 @@ function renderMovies(movieList) {
     };
 };
 
+
 //listens for the click of button (could switch to an "a" tag), then that card's movie id is send to the 'where to watch' function
 $(document).on('click', '.movieId', function () {
     var movieId = this.value;
@@ -223,6 +224,7 @@ $(document).on('click', '.movieId', function () {
 })
 
 $(document).on('click', '.bookmarkId', function () {
+    $(this).text('Added!');
     // save value of bookmark button which equals tmdb id
     var selectedId = $(this).val();
     // save value of bookmarked description
