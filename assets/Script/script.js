@@ -79,17 +79,16 @@ function renderGenreMovies(genreList) {
         $('#' + i).append(cardDescription);
 
         var movieId = document.createElement('button');
-        movieId.setAttribute('value', genreList[i].id);
         movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
         movieId.textContent = 'Watch Providers';
-        console.log(genreList[i].id);
-        console.log(movieId);
+        movieId.setAttribute('value', genreList[i].id);
         $('#' + i).append(movieId);
         //$('#' + i).append(movieId);
 
         var bookmarkId = document.createElement('button');
-        bookmarkId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
-        bookmarkId.setAttribute('id', "bookmark-" + genreList[i].id);
+        bookmarkId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full bookmarkId');
+        bookmarkId.setAttribute('id', "bookmark-" + [i]);
+        bookmarkId.setAttribute('value', genreList[i].id);
         bookmarkId.textContent = 'Bookmark';
         $('#' + i).append(bookmarkId);
     };
@@ -172,34 +171,39 @@ function renderMovies(movieList) {
         // cardImage.setAttribute("width", '100px');
         cardImage.setAttribute("class", "card-image");
         var setImgLocation = "main section div#" + i;
+        cardImage.setAttribute('value', movieList[i].tmdbId);
         $(setImgLocation).html(cardImage);
 
         var cardTitle = document.createElement('p');
         cardTitle.textContent = movieList[i].title;
         cardTitle.setAttribute("class", "card-title mt-3")
+        cardTitle.setAttribute('value', movieList[i].tmdbId);
         console.log(cardTitle);
         $('#' + i).append(cardTitle);
 
         var cardRating = document.createElement('p');
         cardRating.textContent = (" Rating: " + movieList[i].rating);
         cardRating.setAttribute("class", "card-rating");
+        cardRating.setAttribute('value', movieList[i].tmdbId);
         $('#' + i).append(cardRating);
 
         var cardDescription = document.createElement('p');
         cardDescription.textContent = ("Description: " + movieList[i].description);
         cardDescription.setAttribute("class", "card-description");
+        cardDescription.setAttribute('value', movieList[i].tmdbId);
         $('#' + i).append(cardDescription);
 
         var movieId = document.createElement('button');
-        movieId.setAttribute('value', movieList[i].tmdbId);
         movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
         movieId.textContent = 'Watch Providers';
+        movieId.setAttribute('value', movieList[i].tmdbId);
         $('#' + i).append(movieId);
         //$('#' + i).append(movieId);
 
         var bookmarkId = document.createElement('button');
-        bookmarkId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
+        bookmarkId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full bookmarkId');
         bookmarkId.setAttribute('id', "bookmark-" + movieList[i].tmdbId);
+        bookmarkId.setAttribute('value', movieList[i].tmdbId);
         bookmarkId.textContent = 'Bookmark';
         $('#' + i).append(bookmarkId);
     };
@@ -214,6 +218,33 @@ $(document).on('click', '.movieId', function(){
     //reset value of 'a' or do I need to reset movieId?
     $(this).val('');
     movieId = '';
+})
+
+$(document).on('click', '.bookmarkId', function(){
+    // save value of bookmark button which equals tmdb id
+    var selectedId = $(this).val();
+    // save value of bookmarked description
+    var selectedDesc = $(this).parent("div").children(".card-description").text();
+    // save value of bookmarked rating
+    var selectedRating = $(this).parent("div").children(".card-rating").text();
+    // save value of bookmarked title
+    var selectedTitle = $(this).parent("div").children(".card-title").text();
+    // save value of bookmarked image
+    var selectedImage = $(this).parent("div").children(".card-image").attr("src");
+    // create the object
+    var bookmarkItem = {};
+    // add the elements of the object
+    bookmarkItem['id'] = selectedId;
+    bookmarkItem['description'] = selectedDesc;
+    bookmarkItem['rating'] = selectedRating;
+    bookmarkItem['title'] = selectedTitle;
+    bookmarkItem['image'] = selectedImage;
+
+    //log the object for checking
+    console.log(bookmarkItem);
+
+    // save to bookmarks
+    // saveBookmark(bookmarkItem);
 })
 
 function whereToWatch(movieId) {
@@ -257,7 +288,9 @@ function whereToWatch(movieId) {
 
 
 function renderWhereToWatch(watchLocations, watchTitle) {
+    // set title of modal
     $('#modal-title').text("Watch Providers for: " + watchTitle);
+    // clear modal of previous search if any
     $('#modal-icon-grid').empty();
 
     if (watchLocations.length < 1) {
