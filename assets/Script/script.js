@@ -174,39 +174,63 @@ function whereToWatch(movieId) {
         .then(response => response.json())
         .then(response => {
 
-            watchLocations = {}
             // response.collection.locations.length
             var watch = response.collection
-            var watchPlatform = {}
-            //for (var i = 0; i <  watch.locations.length; i++)
-            for (var i = 0; i < 2; i++) {
-                watchPlatform['company'] = watch.locations[i].display_name
-                watchPlatform['url'] = watch.locations[i].url
-                watchPlatform['icon'] = watch.locations[i].icon
-                watchLocations[i] = watchPlatform
+            var watchLocations = [];
+            watchTitle = watch.name;
+
+            // console.log("collection length: " + response.collection.locations.length);
+            // console.log("collection 1: " + watch.collection.locations[0].display_name);
+            // console.log("collection 2: " + watch.collection.locations[1].display_name);
+            // console.log("collection 3: " + watch.collection.locations[2].display_name);
+            // console.log("collection 4: " + watch.collection.locations[3].display_name);
+
+            for (var i = 0; i < watch.locations.length; i++) {                
+                var watchPlatform ={};
+                watchPlatform['company'] = watch.locations[i].display_name;
+                watchPlatform['url'] = watch.locations[i].url;
+                watchPlatform['icon'] = watch.locations[i].icon;
+                // console.log(watchPlatform);
+                watchLocations[i] = watchPlatform;
             }
-            console.log(watchLocations)
-            renderWhereToWatch(watchLocations)
+            // console.log(watchLocations);
+            renderWhereToWatch(watchLocations, watchTitle)
         })
 }
 
 
-function renderWhereToWatch(watchLocations) {
-    for (var i = 0; i < 1; i++) {
-        var company = document.createElement('p');
-        company.setAttribute('class', 'company');
-        company.textContent = watchLocations[i].company;
-        $('#selected-movie-location').append(company);
+function renderWhereToWatch(watchLocations, watchTitle) {
+    $('#modal-title').text("Watch Providers for: " + watchTitle);
+    $('#modal-icon-grid').empty();
 
-        var url = document.createElement('a');
-        url.setAttribute('id', 'url');
-        url.setAttribute('href', watchLocations[i].url);
-        $('#selected-movie-location').append(url);
+    if (watchLocations.length < 1) {
+        var errorText = document.createElement('h4');
+        errorText.textContent = "No watch providers available!"
+        $('#modal-icon-grid').append(errorText);
+    } else {
+        for (var i = 0; i < watchLocations.length; i++) {
+            // var company = document.createElement('p');
+            // company.setAttribute('class', 'company');
+            // company.textContent = watchLocations[i].company;
+            // $('#modal-icon-grid').append(company);
 
-        var icon = document.createElement('img');
-        icon.setAttribute('id', 'icon');
-        icon.setAttribute('src', watchLocations[i].icon);
-        $('#url').append(icon);
+            var imgContainer = document.createElement('div');
+            imgContainer.setAttribute('class', 'hover:shadow-2x1');
+            imgContainer.setAttribute('id', 'img-container-' + [i]);
+            $('#modal-icon-grid').append(imgContainer);
+
+            var url = document.createElement('a');
+            url.setAttribute('id', 'url' + [i]);
+            url.setAttribute('href', watchLocations[i].url);
+            url.setAttribute('target', '_blank');
+            $('#img-container-' + [i]).append(url);
+
+            var icon = document.createElement('img');
+            icon.setAttribute('id', 'icon');
+            icon.setAttribute('src', watchLocations[i].icon);
+            icon.setAttribute('class', 'place-self-stretch');
+            $('#url' + [i]).append(icon);
+        }
     }
 }
 
@@ -299,6 +323,15 @@ $('#return-btn').click(function () {
     };
 })
 
+$('#modal2-btn').click(function () {
+    $('#selected-movie-dash').css("display","block");
+    testMovieId = "10150";
+    whereToWatch(testMovieId);
+})
+
+$('#modal-btn').click(function () {
+    $('#selected-movie-dash').css("display","none");
+})
 
 $(document).ready(function () {
     if ($("#genre-combo option:selected").val() == 0) {

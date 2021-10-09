@@ -87,7 +87,7 @@
         </div>
 
         <!-- Search results container-->
-        <section class="grid lg:grid-rows-2 lg:grid-cols-5 md:grid-rows-2 md:grid-cols-2 sm:auto-cols-max-2 sm:auto-rows-max-5 gap-x-6 gap-y-4 m-4" id="suggested-movie-cards">
+        <section class="grid lg:grid-rows-2 lg:grid-cols-5 md:grid-rows-2 md:grid-cols-2 sm:auto-cols-max-2 sm:auto-rows-max-10 gap-x-6 gap-y-4 m-4" id="suggested-movie-cards">
 
             <div id="0" class="my-4 bg-white rounded-md shadow border">
                 <div id="img-div"></div>
@@ -126,7 +126,7 @@
         </section>
         
         <!-- Bookmarks View Container-->
-        <section class="grid lg:grid-rows-2 lg:grid-cols-5 sm:auto-cols-max-2 sm: auto-rows-max-5 gap-x-6 gap-y-6 m-4 md:object-contain hidden" id="bookmark-cards">
+        <section class="grid lg:grid-rows-2 lg:grid-cols-5 sm:auto-cols-max-2 sm:auto-rows-max-10 gap-x-6 gap-y-6 m-4 md:object-contain hidden" id="bookmark-cards">
 
             <div id="bm-0" class="my-4 bg-white rounded-md shadow border">
                 <div id="img-div"></div>
@@ -162,24 +162,23 @@
 
         </section>
 
+        <!-- TC - Repurposed this for modal for where to watch pop-up -->
         <!-- this dashboard is only for the user selected movie, not for the random movie suggestions -->
         <!-- could have a bookmark button that saves the movie info to local storage -->
-        <section  class="hidden" id="selected-movie-dash"> 
-<!-- class="hidden" -->
-            <div>
-
-            <div id="selected-movie-title"> Selected Movie:</div>
-            <img id="selected-movie-img" href="">
-
-            <div id="selected-movie-rating">Rating:</div>
-            <div id="selected-movie-location">Where To Watch:</div>
-
+        <section class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="selected-movie-dash"> 
+            <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white" id="text-container">
+                <div class="mt-3 text-center">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Watch Providers for: </h3>
+                    <div class="grid grid-cols-3 mx-auto" id="modal-icon-grid">
+                    </div>
+                    <div class="items-center px-4 px-3">
+                        <button id="modal-btn" class="mt-3 text-white font-bold py-2 px-4 rounded-full">Close</button>
+                    </div>
+                </div>
             </div>
-
-            <button class="text-white font-bold py-2 px-4 rounded-full" id="saved-btn">Bookmark</button>
-
         </section>
         
+        <button id="modal2-btn" class="mt-3 text-white font-bold py-2 px-4 rounded-full">Test</button>
 
     </main>
     <footer class="p-4 md:flex md:items-center md:justify-center " style="border-top:1px solid white">
