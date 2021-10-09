@@ -1,3 +1,5 @@
+var savedMovies = [];
+
 //function to get random movies in selected genre
 var getRandomGenre = function (genreId, genreText, genrePageId) {
     // set title somewhere to genreText
@@ -241,31 +243,25 @@ $(document).on('click', '.bookmarkId', function () {
     bookmarkItem['image'] = selectedImage;
 
     //log the object for checking
-    console.log(bookmarkItem);
-
-    var savedMovies = [];
-
-    function loadBookmarks() {
-        console.log('Loading Bookmarks from localStorage');
-        if (localStorage.getItem(savedMovies) === null) {
-            savedMovies = [];
-        } else {
-            savedMovies = JSON.parse(localStorage.getItem(bookmarkItem));
-        }
-        console.log(savedMovies);
-    };
-    //add bookmark to local storage
-
-    function addBookmark(bookmarkItem) {
-        savedMovies.push(bookmarkItem);
-        localStorage.setItem("movies", JSON.stringify(savedMovies));
-        console.log("bookmark added" + savedMovies);
-    }
-
     addBookmark(bookmarkItem);
 
-    //render bookmarks
 });
+
+//add bookmark to local storage
+function loadBookmarks() {
+    savedMovies = JSON.parse(localStorage.getItem("movies"));
+    console.log('Loading Bookmarks from localStorage');
+    if (savedMovies === null) {
+        savedMovies = []
+    } 
+    console.log("length of array is: " + savedMovies.length);
+};
+
+function addBookmark(bookmarkItem) {
+    savedMovies.push(bookmarkItem);
+    localStorage.setItem("movies", JSON.stringify(savedMovies));
+    console.log("bookmark added" + savedMovies);
+};
 
 function whereToWatch(movieId) {
 
@@ -306,7 +302,6 @@ function whereToWatch(movieId) {
         })
 }
 
-
 function renderWhereToWatch(watchLocations, watchTitle) {
     // set title of modal
     $('#modal-title').text("Watch Providers for: " + watchTitle);
@@ -344,6 +339,11 @@ function renderWhereToWatch(watchLocations, watchTitle) {
     }
 }
 
+function renderBookmarks(){
+    console.log("bookmark page array length is: " + savedMovies.length);
+
+}
+
 // intercept button click to show random movies
 $('#random-btn').click(function () {
     getRandomMovies();
@@ -374,6 +374,8 @@ $('#bookmark-btn').click(function () {
     $('#bookmark-cards').removeClass('hidden');
     $('#headline-txt').text("Bookmarks");
     $('#refresh-btn').hide();
+
+    renderBookmarks();
 })
 
 // when clicking return button, hide bookmark related and show main page
@@ -406,10 +408,8 @@ $(document).ready(function () {
         $('#refresh-btn').show();
         console.log("false: " + "Value:" + $("#genre-combo option:selected").val())
     };
+    loadBookmarks();
 })
-    // save and display bookmarked movies to local storage
-
-
 
 //commented code abyss of cataclysm
 
