@@ -341,7 +341,48 @@ function renderWhereToWatch(watchLocations, watchTitle) {
 
 function renderBookmarks(){
     console.log("bookmark page array length is: " + savedMovies.length);
+    for (var i = 0; i < savedMovies.length; i++) {
 
+
+        if (savedMovies[i].image === null) {
+            var imageUrl = "./assets/Images/null.jpg";
+        } else {
+            var imageUrl = "https://image.tmdb.org/t/p/w500" + savedMovies[i].image;
+        };
+
+        var cardImage = document.createElement('img');
+        cardImage.setAttribute("src", imageUrl);
+        // cardImage.setAttribute("width", '100px');
+        cardImage.setAttribute("class", "card-image");
+        var setImgLocation = "main section div#bm-" + i;
+        cardImage.setAttribute('value', savedMovies[i].id);
+        $(setImgLocation).html(cardImage);
+
+        var cardTitle = document.createElement('p');
+        cardTitle.textContent = savedMovies[i].title;
+        cardTitle.setAttribute("class", "card-title mt-3")
+        cardTitle.setAttribute('value', savedMovies[i].id);
+        console.log(cardTitle);
+        $('#bm-' + i).append(cardTitle);
+
+        var cardRating = document.createElement('p');
+        cardRating.textContent = ("Rating: " + savedMovies[i].rating + " out of 10");
+        cardRating.setAttribute("class", "card-rating");
+        cardRating.setAttribute('value', savedMovies[i].id);
+        $('#bm-' + i).append(cardRating);
+
+        var cardDescription = document.createElement('p');
+        cardDescription.textContent = ("Description: " + savedMovies[i].description);
+        cardDescription.setAttribute("class", "card-description");
+        cardDescription.setAttribute('value', savedMovies[i].id);
+        $('#bm-' + i).append(cardDescription);
+
+        var movieId = document.createElement('button');
+        movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
+        movieId.textContent = 'Watch Providers';
+        movieId.setAttribute('value', savedMovies[i].id);
+        $('#bm-' + i).append(movieId);
+    }
 }
 
 // intercept button click to show random movies
