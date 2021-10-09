@@ -79,13 +79,19 @@ function renderGenreMovies(genreList) {
         $('#' + i).append(cardDescription);
 
         var movieId = document.createElement('button');
-        movieId.setAttribute('value', genreList[i].id)
-        movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-4 rounded-full max-w-sm md:w-full movieId')
-        movieId.textContent = 'Click Here To Watch!'
+        movieId.setAttribute('value', genreList[i].id);
+        movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
+        movieId.textContent = 'Watch Providers';
         console.log(genreList[i].id);
         console.log(movieId);
         $('#' + i).append(movieId);
         //$('#' + i).append(movieId);
+
+        var bookmarkId = document.createElement('button');
+        bookmarkId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
+        bookmarkId.setAttribute('id', "bookmark-" + genreList[i].id);
+        bookmarkId.textContent = 'Bookmark';
+        $('#' + i).append(bookmarkId);
     };
 };
 
@@ -149,11 +155,62 @@ var getRandomMovies = function () {
         });
 };
 
+//function to show random movies - pretty much same as render
+function renderMovies(movieList) {
+
+    for (var i = 0; i < movieList.length; i++) {
+
+
+        if (movieList[i].image === null) {
+            var imageUrl = "./assets/Images/null.jpg";
+        } else {
+            var imageUrl = "https://image.tmdb.org/t/p/w500" + movieList[i].image;
+        };
+
+        var cardImage = document.createElement('img');
+        cardImage.setAttribute("src", imageUrl);
+        // cardImage.setAttribute("width", '100px');
+        cardImage.setAttribute("class", "card-image");
+        var setImgLocation = "main section div#" + i;
+        $(setImgLocation).html(cardImage);
+
+        var cardTitle = document.createElement('p');
+        cardTitle.textContent = movieList[i].title;
+        cardTitle.setAttribute("class", "card-title mt-3")
+        console.log(cardTitle);
+        $('#' + i).append(cardTitle);
+
+        var cardRating = document.createElement('p');
+        cardRating.textContent = (" Rating: " + movieList[i].rating);
+        cardRating.setAttribute("class", "card-rating");
+        $('#' + i).append(cardRating);
+
+        var cardDescription = document.createElement('p');
+        cardDescription.textContent = ("Description: " + movieList[i].description);
+        cardDescription.setAttribute("class", "card-description");
+        $('#' + i).append(cardDescription);
+
+        var movieId = document.createElement('button');
+        movieId.setAttribute('value', movieList[i].tmdbId);
+        movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
+        movieId.textContent = 'Watch Providers';
+        $('#' + i).append(movieId);
+        //$('#' + i).append(movieId);
+
+        var bookmarkId = document.createElement('button');
+        bookmarkId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
+        bookmarkId.setAttribute('id', "bookmark-" + movieList[i].tmdbId);
+        bookmarkId.textContent = 'Bookmark';
+        $('#' + i).append(bookmarkId);
+    };
+};
+
 //listens for the click of button (could switch to an "a" tag), then that card's movie id is send to the 'where to watch' function
 $(document).on('click', '.movieId', function(){
     var movieId = this.value;
     console.log(movieId);
     whereToWatch(movieId)
+    $('#selected-movie-dash').css("display","block");
     //reset value of 'a' or do I need to reset movieId?
     $(this).val('');
     movieId = '';
@@ -234,54 +291,15 @@ function renderWhereToWatch(watchLocations, watchTitle) {
     }
 }
 
-//function to show random movies - pretty much same as render
-function renderMovies(movieList) {
-
-    for (var i = 0; i < movieList.length; i++) {
-
-
-        if (movieList[i].image === null) {
-            var imageUrl = "./assets/Images/null.jpg";
-        } else {
-            var imageUrl = "https://image.tmdb.org/t/p/w500" + movieList[i].image;
-        };
-
-        var cardImage = document.createElement('img');
-        cardImage.setAttribute("src", imageUrl);
-        // cardImage.setAttribute("width", '100px');
-        cardImage.setAttribute("class", "card-image");
-        var setImgLocation = "main section div#" + i;
-        $(setImgLocation).html(cardImage);
-
-        var cardTitle = document.createElement('p');
-        cardTitle.textContent = movieList[i].title;
-        cardTitle.setAttribute("class", "card-title mt-3")
-        console.log(cardTitle);
-        $('#' + i).append(cardTitle);
-
-        var cardRating = document.createElement('p');
-        cardRating.textContent = (" Rating: " + movieList[i].rating);
-        cardRating.setAttribute("class", "card-rating");
-        $('#' + i).append(cardRating);
-
-        var cardDescription = document.createElement('p');
-        cardDescription.textContent = ("Description: " + movieList[i].description);
-        cardDescription.setAttribute("class", "card-description");
-        $('#' + i).append(cardDescription);
-
-    };
-};
-
-
-
 // intercept button click to show random movies
 $('#random-btn').click(function () {
     getRandomMovies();
 })
 
 $('#refresh-btn').click(function () {
-    // set combobox ID to value of selected option in combobox  -- fix this it is broken
-    var genreId = this.value;
+    // set combobox ID to value of selected option in combobox
+    var genreId = $("#genre-combo").val();
+    console.log("refresh id is: " + genreId);
 
     // set combobox text to value of selected option in combobox
     var genreText = $("#genre-combo option:selected").text();
@@ -321,12 +339,6 @@ $('#return-btn').click(function () {
     } else {
         console.log("False: " + $("#genre-combo option:selected").val());
     };
-})
-
-$('#modal2-btn').click(function () {
-    $('#selected-movie-dash').css("display","block");
-    testMovieId = "10150";
-    whereToWatch(testMovieId);
 })
 
 $('#modal-btn').click(function () {
@@ -394,3 +406,11 @@ $(document).ready(function () {
 //                       _//        {{
 //                    '='~'          \\_    
 //                                    ~~'
+
+/* Used for testing with set movie id, no longer needed
+$('#modal2-btn').click(function () {
+    $('#selected-movie-dash').css("display","block");
+    testMovieId = "10150";
+    whereToWatch(testMovieId);
+})
+*/
