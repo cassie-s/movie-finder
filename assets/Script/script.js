@@ -72,23 +72,23 @@ function renderGenreMovies(genreList) {
 
         var cardRating = document.createElement('p');
         cardRating.textContent = ("Rating: " + genreList[i].rating + " out of 10");
-        cardRating.setAttribute("class", "card-rating");
+        cardRating.setAttribute("class", "card-rating underline");
         $('#' + i).append(cardRating);
 
         var cardDescription = document.createElement('p');
         cardDescription.textContent = ("Description: " + genreList[i].description);
-        cardDescription.setAttribute("class", "card-description");
+        cardDescription.setAttribute("class", "card-description max-h-44 overflow-auto");
         $('#' + i).append(cardDescription);
 
         var movieId = document.createElement('button');
-        movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
+        movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-6 rounded-full max-w-sm md:w-full movieId');
         movieId.textContent = 'Watch Providers';
         movieId.setAttribute('value', genreList[i].id);
         $('#' + i).append(movieId);
         //$('#' + i).append(movieId);
 
         var bookmarkId = document.createElement('button');
-        bookmarkId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full bookmarkId');
+        bookmarkId.setAttribute('class', 'text-white font-bold my-4 py-2 px-6 rounded-full max-w-sm md:w-full bookmarkId');
         bookmarkId.setAttribute('id', "bookmark-" + [i]);
         bookmarkId.setAttribute('value', genreList[i].id);
         bookmarkId.textContent = 'Bookmark';
@@ -185,18 +185,18 @@ function renderMovies(movieList) {
 
         var cardRating = document.createElement('p');
         cardRating.textContent = ("Rating: " + movieList[i].rating + " out of 10");
-        cardRating.setAttribute("class", "card-rating");
+        cardRating.setAttribute("class", "card-rating underline");
         cardRating.setAttribute('value', movieList[i].tmdbId);
         $('#' + i).append(cardRating);
 
         var cardDescription = document.createElement('p');
         cardDescription.textContent = ("Description: " + movieList[i].description);
-        cardDescription.setAttribute("class", "card-description");
+        cardDescription.setAttribute("class", "card-description max-h-44 overflow-auto");
         cardDescription.setAttribute('value', movieList[i].tmdbId);
         $('#' + i).append(cardDescription);
 
         var movieId = document.createElement('button');
-        movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-8 rounded-full max-w-sm md:w-full movieId');
+        movieId.setAttribute('class', 'text-white font-bold my-4 py-2 px-6 rounded-full max-w-sm md:w-full movieId');
         movieId.textContent = 'Watch Providers';
         movieId.setAttribute('value', movieList[i].tmdbId);
         $('#' + i).append(movieId);
@@ -369,13 +369,13 @@ function renderBookmarks(){
 
         var cardRating = document.createElement('p');
         cardRating.textContent = (savedMovies[i].rating);
-        cardRating.setAttribute("class", "card-rating");
+        cardRating.setAttribute("class", "card-rating underline");
         cardRating.setAttribute('value', savedMovies[i].id);
         $('#bm-' + i).append(cardRating);
 
         var cardDescription = document.createElement('p');
         cardDescription.textContent = (savedMovies[i].description);
-        cardDescription.setAttribute("class", "card-description");
+        cardDescription.setAttribute("class", "card-description max-h-44 overflow-auto");
         cardDescription.setAttribute('value', savedMovies[i].id);
         $('#bm-' + i).append(cardDescription);
 

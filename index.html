@@ -29,17 +29,17 @@
     <main>
         <!--screen breakpoints: small min-width:640 medium min-width:768 large: min-width:1024-->
      
-        <section class="mt-10 flex md:items-center md:justify-center sm:items-center sm:justify-center space-x-6">
-            <button id="random-btn" class="text-white font-bold py-2 px-4 rounded-full animate-pulse">
+        <section class="mt-10 flex md:items-center md:justify-center sm:items-center sm:justify-center space-x-6 cursor-pointer">
+            <button id="random-btn" class="text-white font-bold py-2 px-6 rounded-full animate-pulse">
                 <i class="fas fa-search"></i> Get Movies!
             </button>
          
             <!-- could use and icon for the bookmark btn -->
-            <button id="bookmark-btn" class="text-white font-bold py-2 px-4 rounded-full">
+            <button id="bookmark-btn" class="text-white font-bold py-2 px-6 rounded-full">
                 <i class="fas fa-bookmark"></i> View Bookmarked Movies
             </button>
             <!-- add button to toggle bookmark pane and keep invisible on load-->
-             <button id="return-btn" class="mt-8 text-white font-bold py-2 px-4 rounded-full hidden">
+             <button id="return-btn" class="mt-8 text-white font-bold py-2 px-6 rounded-full hidden">
                 <i class="fas fa-film"></i> Return to Search
             </button>
         </section>
@@ -49,8 +49,8 @@
         <!-- when a genre is selected then another is selected the old cards are populated with the new genre -->
         <div id="genre-pick-box" class="mt-2 flex  justify-center items-center gap-2">
 
-            <h2 class="text-xl mt-3 font-bold font-sans">Search By Popular Genres</h2>
-            <select class="mt-3 appearance-none  bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"  id="genre-combo">
+            <h2 class="text-xl mt-3 font-bold font-sans">Search By Popular Genres: </h2>
+            <select class="mt-3 appearance-none  bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:shadow-outline"  id="genre-combo">
                 <option disabled selected value="0">Choose a genre ...</option>
                 <option value="28">Action</option>
                 <option value="12">Adventure</option>
@@ -89,37 +89,36 @@
         <!-- Search results container-->
         <section class="grid lg:grid-rows-2 lg:grid-cols-5 md:grid-rows-2 md:grid-cols-2 sm:auto-cols-max-2 sm:auto-rows-max-10 gap-x-6 gap-y-4 m-4" id="suggested-movie-cards">
 
-            <div id="0" class="my-4 bg-white rounded-md shadow border">
+            <div id="0" class="my-4 bg-yellow-300 rounded-md shadow border">
                 <div id="img-div"></div>
             </div>
-            <div id="1" class="my-4 bg-white rounded-md shadow border">
+            <div id="1" class="my-4 bg-yellow-300 rounded-md shadow border">
+                  
+            </div>
+            
+            <div id="2" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
+            </div>
+            <div id="3" class="my-4 bg-yellow-300 rounded-md shadow border">
+                
+            </div>
+            <div id="4" class="my-4 bg-yellow-300 rounded-md shadow border">
+                
+            </div>
+            <div id="5" class="my-4 bg-yellow-300 rounded-md shadow border">
+                
+            </div>
+            <div id="6" class="my-4 bg-yellow-300 rounded-md shadow border">
+                
+            </div>
+            <div id="7" class="my-4 bg-yellow-300 rounded-md shadow border">
+                
+            </div>
+            <div id="8" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
             
-            <div id="2" class="my-4 bg-white rounded-md shadow border">
-                
-            </div>
-            <div id="3" class="my-4 bg-white rounded-md shadow border">
-                
-            </div>
-            <div id="4" class="my-4 bg-white rounded-md shadow border">
-                
-            </div>
-            <div id="5" class="my-4 bg-white rounded-md shadow border">
-                
-            </div>
-            <div id="6" class="my-4 bg-white rounded-md shadow border">
-                
-            </div>
-            <div id="7" class="my-4 bg-white rounded-md shadow border">
-                
-            </div>
-            <div id="8" class="my-4 bg-white rounded-md shadow border">
-                
-            </div>
-            
-            <div id="9" class="my-4 bg-white rounded-md shadow border">
+            <div id="9" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
 
@@ -128,35 +127,35 @@
         <!-- Bookmarks View Container-->
         <section class="grid lg:grid-rows-2 lg:grid-cols-5 sm:auto-cols-max-2 sm:auto-rows-max-10 gap-x-6 gap-y-6 m-4 md:object-contain hidden" id="bookmark-cards">
 
-            <div id="bm-0" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-0" class="my-4 bg-yellow-300 rounded-md shadow border">
                 <div id="img-div"></div>
             </div>
-            <div id="bm-1" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-1" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
-            <div id="bm-2" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-2" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
-            <div id="bm-3" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-3" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
-            <div id="bm-4" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-4" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
-            <div id="bm-5" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-5" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
-            <div id="bm-6" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-6" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
-            <div id="bm-7" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-7" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
-            <div id="bm-8" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-8" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
 
-            <div id="bm-9" class="my-4 bg-white rounded-md shadow border">
+            <div id="bm-9" class="my-4 bg-yellow-300 rounded-md shadow border">
                 
             </div>
 
