@@ -11,6 +11,11 @@ var getRandomGenre = function (genreId, genreText, genrePageId) {
         'api_key=3e05de6918321bc70bb8260fdbd331f3'
 
         +
+
+        '&language=en-US'
+
+
+        +
         '&include_adult=false'
 
         +
